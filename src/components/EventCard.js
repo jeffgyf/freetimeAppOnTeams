@@ -1,13 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { 
   Text,
   DocumentCard,
   DocumentCardPreview,
-  initializeIcons, 
-  ActionButton,
-  TextField, 
-  PrimaryButton } from 'office-ui-fabric-react';
+  ActionButton} from 'office-ui-fabric-react';
 import './EventCard.css';
 import { ImageFit } from 'office-ui-fabric-react/lib/Image';
 
@@ -65,44 +61,3 @@ class Logo extends React.Component {
               </div>
   }
 }
-
-
-class LoginPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
-
-  
-  render() {
-    return (
-      <div className='LoginPanel'>
-        <Logo/>
-        <form>
-          <TextField placeholder="Username" />
-          <TextField type="password" placeholder="Password" />
-          <PrimaryButton>Login</PrimaryButton>
-        </form>
-      </div>
-    );
-  }
-}
-
-
-// ========================================
-const exampleStyles = {
-  example: [
-    'ms-BasicButtonsExample',
-    {
-      selectors: {
-        '.ms-Button': {
-          margin: '10px 0'
-        }
-      }
-    }
-  ]
-};
