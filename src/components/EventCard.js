@@ -13,14 +13,14 @@ var logo="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFi
 
 
 export default class EventCard extends React.PureComponent {
-  
+  static Width=240;
   render() {
     const previewProps= {
       previewImages: [
         {
           previewImageSrc: this.props.img,
           imageFit: ImageFit.cover,
-          width: 240,
+          width: this.Width,
           height: 150
         }
       ]
