@@ -13,6 +13,6 @@ const eventInfoSample={
 
 ReactDOM.render(
     <EventCard title="Sample Event" eventInfo={eventInfoSample} img={soccer}/>,
-  document.getElementById('root')
+    document.getElementById('root')
 );
 

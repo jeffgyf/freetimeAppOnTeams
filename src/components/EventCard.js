@@ -6,6 +6,7 @@ import {
   ActionButton} from 'office-ui-fabric-react';
 import './EventCard.css';
 import { ImageFit } from 'office-ui-fabric-react/lib/Image';
+import CreateEventDialog from './CreateEventDialog.tsx';
 
 var logo="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31";
 
@@ -49,6 +50,7 @@ export default class EventCard extends React.PureComponent {
           people={[{ name: 'Annie Lindqvist', profileImageSrc: null }]}
         />*/}
 
+        <CreateEventDialog/>
       </DocumentCard>
     );
   }

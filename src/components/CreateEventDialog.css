@@ -1,0 +1,22 @@
+.ms-Dialog-main {
+    width: 60% /* Your maximum width here */
+}
+
+.ms-Dialog-subText{
+    display: flex;
+}
+
+.startTime {
+    display:flex;
+}
+
+.ms-DatePicker {
+    padding-right: 14px;
+}
+
+.Title {
+    font-size: 14px; 
+    font-weight: 600px !important;
+    color: rgb(50, 49, 48);
+    font-display: bold !important;
+}
