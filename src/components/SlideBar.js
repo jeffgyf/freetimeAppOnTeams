@@ -5,6 +5,16 @@ import './SlideBar.css';
 
 import { DefaultButton, PrimaryButton, ChoiceGroup, Panel, PanelType, Fabric } from 'office-ui-fabric-react';
 
+var SlideBarWidth = {
+    width: '200px',
+}
+
+var EventCardStyle = {
+    height: '125px',
+};
+
+
+
 export default class SlideBar extends React.Component {
     constructor(){
         super();
@@ -16,6 +26,7 @@ export default class SlideBar extends React.Component {
             this.setState({ showPanel: false });
         };
         this.state={showPanel:false};
+
     }
     render() {
         return (
@@ -27,6 +38,7 @@ export default class SlideBar extends React.Component {
             />
             <Panel 
                 className="SlideBar-main"
+                //style ={SlideBarWidth}
                 isOpen={this.state.showPanel}
                 type={PanelType.smallFixedFar}
                 onDismiss={this._hidePanel}
@@ -35,8 +47,9 @@ export default class SlideBar extends React.Component {
                 headerText="Your Events"
                 //onRenderFooterContent={this._onRenderFooterContent}
                 closeButtonAriaLabel="Close">
+                
                 <div>
-                {this.props.events.map(e=><EventCard title={e.title} eventInfo={e.eventInfo}/>)}
+                {this.props.events.map(e=><div style={EventCardStyle}><EventCard title={e.title} eventInfo={e.eventInfo}/></div>)}
                 </div>
             </Panel>
         </div>
