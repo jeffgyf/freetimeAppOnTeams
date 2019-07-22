@@ -6,12 +6,14 @@ import soccer from './soccer.png';
 import './index.css';
 import Measure from 'react-measure'
 
+
 initializeIcons();
 const eventInfoSample={
   location:"1 Microsoft Way, Redmond, WA",
   date:"Friday, July 12, 2019",
   time:"5:25pm"
 }
+
 
 const eventList=[...Array(10).keys()].map(i=> ({title:"Test"+i, info:eventInfoSample, img:soccer}));
 
