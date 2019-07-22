@@ -5,15 +5,9 @@ import './SlideBar.css';
 
 import { DefaultButton, PrimaryButton, ChoiceGroup, Panel, PanelType, Fabric } from 'office-ui-fabric-react';
 
-var SlideBarWidth = {
-    width: '200px',
-}
-
 var EventCardStyle = {
-    height: '125px',
+    marginBottom: '15px'
 };
-
-
 
 export default class SlideBar extends React.Component {
     constructor(){
@@ -36,9 +30,26 @@ export default class SlideBar extends React.Component {
                 iconProps={{ iconName: 'GlobalNavButton' }}
                 onClick={this._showPanel}
             />
+            <style>
+                {
+                    `
+                    .ms-Panel-main{
+                        width: ${EventCard.Width + 33}px;
+                    }
+                    
+                    .ms-Panel-header{
+                        background-color: rgb(0,120,212);
+                        margin: 0px;
+                        padding: 13px;
+                    }
+
+                    .ms-Panel-headerText{
+                        color:white
+                    }
+                    `
+                }
             <Panel 
                 className="SlideBar-main"
-                //style ={SlideBarWidth}
                 isOpen={this.state.showPanel}
                 type={PanelType.smallFixedFar}
                 onDismiss={this._hidePanel}
@@ -48,10 +59,11 @@ export default class SlideBar extends React.Component {
                 //onRenderFooterContent={this._onRenderFooterContent}
                 closeButtonAriaLabel="Close">
                 
-                <div>
-                {this.props.events.map(e=><div style={EventCardStyle}><EventCard title={e.title} eventInfo={e.eventInfo}/></div>)}
+                <div className="EventCard-top">
+                {this.props.events.map(e=><div className="EventCard-margin"><EventCard title={e.title} eventInfo={e.eventInfo}/></div>)}
                 </div>
             </Panel>
+            </style>
         </div>
         );
     }
