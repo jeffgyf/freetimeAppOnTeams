@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import EventCard from './components/EventCard'
 import {initializeIcons} from 'office-ui-fabric-react';
 import soccer from './soccer.png';
+import CreateEventDialog from './components/CreateEventDialog';
 
 import SlideBar from './components/SlideBar';
 
@@ -15,8 +16,8 @@ const eventInfoSample={
 
 /*
 ReactDOM.render(
-    <EventCard title="Sample Event" eventInfo={eventInfoSample} img={soccer}/>,
-  document.getElementById('root')
+    <CreateEventDialog />,
+    document.getElementById('root')
 );
 */
 const eventList=[...Array(5).keys()].map(i=>({title:"test"+i, eventInfo:eventInfoSample}));
