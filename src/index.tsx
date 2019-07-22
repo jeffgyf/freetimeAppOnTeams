@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import EventCard from './components/EventCard'
 import {initializeIcons} from 'office-ui-fabric-react';
 import soccer from './soccer.png';
+import CreateEventDialog from './components/CreateEventDialog';
 
 initializeIcons();
 const eventInfoSample={
@@ -12,7 +13,7 @@ const eventInfoSample={
 }
 
 ReactDOM.render(
-    <EventCard title="Sample Event" eventInfo={eventInfoSample} img={soccer}/>,
+    <CreateEventDialog />,
     document.getElementById('root')
 );
 

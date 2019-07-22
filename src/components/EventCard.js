@@ -6,7 +6,6 @@ import {
   ActionButton} from 'office-ui-fabric-react';
 import './EventCard.css';
 import { ImageFit } from 'office-ui-fabric-react/lib/Image';
-import CreateEventDialog from './CreateEventDialog.tsx';
 
 var logo="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31";
 
@@ -14,14 +13,14 @@ var logo="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFi
 
 
 export default class EventCard extends React.PureComponent {
-  
+  static Width=240;
   render() {
     const previewProps= {
       previewImages: [
         {
           previewImageSrc: this.props.img,
           imageFit: ImageFit.cover,
-          width: 240,
+          width: this.Width,
           height: 150
         }
       ]
@@ -50,7 +49,6 @@ export default class EventCard extends React.PureComponent {
           people={[{ name: 'Annie Lindqvist', profileImageSrc: null }]}
         />*/}
 
-        <CreateEventDialog/>
       </DocumentCard>
     );
   }
