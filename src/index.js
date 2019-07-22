@@ -1,11 +1,11 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import EventCard from './components/EventCard'
+import EventWall from './components/EventWall'
 import {initializeIcons} from 'office-ui-fabric-react';
 import soccer from './soccer.png';
-import CreateEventDialog from './components/CreateEventDialog';
+import './index.css';
+import Measure from 'react-measure'
 
-import SlideBar from './components/SlideBar';
 
 initializeIcons();
 const eventInfoSample={
@@ -14,18 +14,12 @@ const eventInfoSample={
   time:"5:25pm"
 }
 
-/*
-ReactDOM.render(
-    <CreateEventDialog />,
-    document.getElementById('root')
-);
-*/
-const eventList=[...Array(5).keys()].map(i=>({title:"test"+i, eventInfo:eventInfoSample}));
+
+const eventList=[...Array(10).keys()].map(i=> ({title:"Test"+i, info:eventInfoSample, img:soccer}));
 
 ReactDOM.render(
-  <div>
-    <SlideBar events={eventList}/>
-  </div>,
+ <EventWall events={eventList}/>,
   document.getElementById('root')
-)
-
+);
+//  <SlideBar events={eventList}/>
+//   <EventCard title="Sample Event" eventInfo={eventInfoSample} img={soccer}/>
