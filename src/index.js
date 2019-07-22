@@ -6,7 +6,6 @@ import soccer from './soccer.png';
 import './index.css';
 import Measure from 'react-measure'
 
-
 initializeIcons();
 const eventInfoSample={
   location:"1 Microsoft Way, Redmond, WA",
@@ -20,4 +19,5 @@ ReactDOM.render(
  <EventWall events={eventList}/>,
   document.getElementById('root')
 );
+//  <SlideBar events={eventList}/>
 //   <EventCard title="Sample Event" eventInfo={eventInfoSample} img={soccer}/>
