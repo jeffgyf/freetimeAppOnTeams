@@ -22,7 +22,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 */
-const eventList=[...Array(5).keys()].map(i=>({title:"test"+i, eventInfo:eventInfoSample}));
+const eventList=[...Array(15).keys()].map(i=>({title:"test"+i, eventInfo:eventInfoSample}));
 const InterestList=["Tag1", "Tag2", "Tag3"]
 
 ReactDOM.render(
