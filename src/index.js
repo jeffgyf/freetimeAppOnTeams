@@ -4,7 +4,6 @@ import EventPage from './components/EventPage'
 import {initializeIcons} from 'office-ui-fabric-react';
 
 import './index.css';
-import Measure from 'react-measure'
 
 
 initializeIcons();

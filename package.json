@@ -11,10 +11,11 @@
     "office-ui-fabric-react": "^7.8.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-measure": "^2.3.0",
     "react-file-picker": "0.0.6",
     "react-image-picker": "^1.1.1",
+    "react-measure": "^2.3.0",
     "react-scripts": "^3.0.1",
+    "simplebar-react": "^1.1.0",
     "typescript": "^3.4.2"
   },
   "devDependencies": {},

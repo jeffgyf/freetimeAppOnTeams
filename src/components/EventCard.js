@@ -13,13 +13,13 @@ var logo="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFi
 
 
 export default class EventCard extends React.PureComponent {
-  static Width=240;
+  static Width=200;
   render() {
     const previewProps= {
       previewImages: [{
           previewImageSrc: this.props.img,
           imageFit: ImageFit.cover,
-          width: this.Width,
+          width: EventCard.Width,
           height: 120
         }
       ]
@@ -27,7 +27,7 @@ export default class EventCard extends React.PureComponent {
 
 
     return (
-      <DocumentCard className="EventCard">
+      <DocumentCard className="EventCard" style={{ width: EventCard.Width+'px' }}>
         {this.props.img ? <DocumentCardPreview {...previewProps}/>:null}
         <div className="content">
           <p className="title">{this.props.title}</p>

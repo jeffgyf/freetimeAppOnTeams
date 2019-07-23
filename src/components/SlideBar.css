@@ -18,3 +18,18 @@
 .SlideBar-top{
     text-align: right;
 }
+
+.SlideBar-main .SimpleBar{
+    height: 100%;
+    margin-left: 5px
+  }
+
+.SlideBar-main .ms-Panel-scrollableContent{
+  overflow-y: hidden;
+}  
+
+.SlideBar-main .ms-Panel-content{
+  display:contents;
+  height: 100%;
+  overflow-y: hidden;
+}

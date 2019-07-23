@@ -4,9 +4,12 @@
 }
 
 .EventWall{
-  overflow-y: scroll;
   height: 95%; 
   left: 50%;
   position: absolute;
   transform: translate(-50%, 0%);
+}
+
+.EventWall .SimpleBar{
+  height: 100%;
 }

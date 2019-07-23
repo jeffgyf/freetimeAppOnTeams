@@ -2,6 +2,8 @@ import React from 'react';
 import EventCard from './EventCard';
 import soccer from './../soccer.png';
 import './SlideBar.css';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 
 import { DefaultButton, PrimaryButton, ChoiceGroup, Panel, PanelType, Fabric } from 'office-ui-fabric-react';
 
@@ -30,7 +32,7 @@ export default class SlideBar extends React.Component {
                 {
                     `
                     .ms-Panel-main{
-                        width: ${EventCard.Width + 24}px;
+                        width: ${EventCard.Width + 10}px;
                     }
                     
                     .ms-Panel-header{
@@ -55,8 +57,9 @@ export default class SlideBar extends React.Component {
                 //onRenderFooterContent={this._onRenderFooterContent}
                 closeButtonAriaLabel="Close">
                 
-
-                {this.props.events.map(e=><EventCard title={e.title} eventInfo={e.eventInfo}/>)}
+                <SimpleBar className="SimpleBar" style={{ width: EventCard.Width+'px' }}>
+                    {this.props.events.map(e=><EventCard title={e.title} eventInfo={e.eventInfo} />)}
+                </SimpleBar>
             </Panel>
             </style>
         </div>
