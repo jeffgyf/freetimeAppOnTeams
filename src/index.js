@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import EventPage from './components/EventPage'
+import EventCard from './components/EventCard'
+import Profile from './components/Profile'
 import {initializeIcons} from 'office-ui-fabric-react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -25,6 +26,10 @@ class IndexPage extends React.Component{
 }
 
 initializeIcons();
+
+//const eventList=[...Array(15).keys()].map(i=>({title:"test"+i, eventInfo:eventInfoSample, img:soccer}));
+//const InterestList=["Tag1", "Tag2", "Tag3"]
+//<Profile image={user} name={"Mr Mario"} Interest_tag={InterestList} events={eventList} />,
 ReactDOM.render(
     <Router>
            <Route path="/" exact component={IndexPage} />
