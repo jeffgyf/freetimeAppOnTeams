@@ -24,8 +24,6 @@ export default class EventCard extends React.PureComponent {
         }
       ]
     };
-
-
     return (
       <DocumentCard className="EventCard" style={{ width: EventCard.Width+'px' }}>
         {this.props.img ? <DocumentCardPreview {...previewProps}/>:null}
@@ -33,6 +31,7 @@ export default class EventCard extends React.PureComponent {
           <p className="title">{this.props.title}</p>
             <div className="eventInfo">
               {Object.keys(this.props.eventInfo).map(i=> <p><Text>{this.props.eventInfo[i]}</Text></p>)}
+              {this.props.interests? <p>{this.props.interests.reduce((s, i)=> s+";"+i)}</p>:null}
             </div>
             <div className="joinButton" hidden={this.props.img==null}>
               <ActionButton data-automation-id="test" iconProps={{ iconName: 'Add' }} >

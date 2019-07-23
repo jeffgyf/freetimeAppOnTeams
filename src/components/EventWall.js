@@ -14,7 +14,7 @@ export default class EventWall extends React.Component{
         <div className="EventWall"> 
         <SimpleBar className="SimpleBar" style={{ width: colNum*EventCard.Width+60+'px' }}>
           <table>
-            {eventRows.map(i=><tr> {i.map(k=><td className="EventEntry"><EventCard title={k.title} eventInfo={k.eventInfo} img={k.img}/></td>)}</tr>)}
+            {eventRows.map(i=><tr> {i.map(k=><td className="EventEntry"><EventCard title={k.title} eventInfo={k.eventInfo} img={k.img} interests={k.interests}/></td>)}</tr>)}
           </table>
         </SimpleBar>
 {/*<Measure>
