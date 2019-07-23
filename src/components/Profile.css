@@ -1,0 +1,66 @@
+.user_image{
+    margin:30px;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.profile_main{
+    background-color: #f3f2f1;
+    height: 450px;
+}
+
+.profile_inner{
+    position: relative;
+    top: 10px;
+    background-color: white;
+    display: flex;
+    height: 100%;
+    margin-right: 20%;
+    margin-left: 20%;
+}
+
+.user_info{
+    position: relative;
+    margin-top: 30px;
+}
+
+.blank{
+    height: 5%;
+}
+
+.user_name{
+    color: #666;
+    font-family: Roboto,Arial,sans-serif;
+}
+
+.interest_tag_name{
+    font-family: Roboto,Arial,sans-serif;
+}
+
+.item{
+    display: flex;
+}
+
+.tag_text{
+    font-family: Roboto,Arial,sans-serif;
+    text-align: center;
+    display: flex;
+    position: relative;
+    box-sizing: content-box;
+    flex-shrink: 1;
+    margin-top: 2px;
+    margin-right: 5px;
+    margin-bottom: 2px;
+    margin-left: 5px;
+    padding: 3px;
+    height: 26px;
+    line-height: 26px;
+    cursor: default;
+    display: flex; 
+    flex-wrap: nowrap;
+    max-width: 300px;
+    color: rgb(255, 255, 255);
+    border-radius: 2px;
+    background: rgb(0, 120, 212);
+}
