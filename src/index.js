@@ -6,9 +6,7 @@ import {initializeIcons} from 'office-ui-fabric-react';
 import soccer from './soccer.png';
 import user from './user.jpg';
 import EventWall from './components/EventWall'
-import {initializeIcons} from 'office-ui-fabric-react';
 import './index.css';
-import Measure from 'react-measure'
 
 
 initializeIcons();
@@ -29,7 +27,7 @@ const InterestList=["Tag1", "Tag2", "Tag3"]
 
 ReactDOM.render(
   <div>
-    <Profile image={user} name={"Wenynag Chao"} Interest_tag={InterestList}/>
+      <Profile image={user} name={"Wenynag Chao"} Interest_tag={InterestList}/>
   </div>,
 
   document.getElementById('root')

@@ -39,13 +39,12 @@
 }
 
 .item{
-    display: flex;
+
 }
 
 .tag_text{
     font-family: Roboto,Arial,sans-serif;
     text-align: center;
-    display: flex;
     position: relative;
     box-sizing: content-box;
     flex-shrink: 1;
@@ -56,9 +55,6 @@
     padding: 3px;
     height: 26px;
     line-height: 26px;
-    cursor: default;
-    display: flex; 
-    flex-wrap: nowrap;
     max-width: 300px;
     color: rgb(255, 255, 255);
     border-radius: 2px;

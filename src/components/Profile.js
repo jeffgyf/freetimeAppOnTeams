@@ -13,10 +13,16 @@ export default class Profile extends React.Component {
                         <div className="blank"></div>
                         <h2 className="interest_tag_name">Interest Tag:</h2>
                         <div className="interest_tag_main">
-                            <div className="item">
-                                <div className="tag_text"> Sports </div>
-                                <div className="tag_text"> Video Game </div>
-                            </div>
+                            <table className="item">
+                                <tr>
+                                <td className="tag_text"> Sports 1</td>
+                                <td className="tag_text"> Video Game fgdfgdf1</td>
+                                </tr>
+                                <tr>
+                                <td className="tag_text"> Sports </td>
+                                <td className="tag_text"> Video Game </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
