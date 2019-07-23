@@ -2,13 +2,35 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import EventPage from './components/EventPage'
 import {initializeIcons} from 'office-ui-fabric-react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import './index.css';
-
+class IndexPage extends React.Component{
+  constructor(){
+    super();
+    this.state={cookie:document.cookie};
+  }
+  render(){
+    return (
+    <div>
+      <a href="/eventPage">{"eventPage"}</a>
+      <br/>
+      <a href="/profilePage">{"profilePage"}</a>
+      <p>{"cookie string: "+ this.state.cookie}</p>
+      <button onClick={()=> {
+        document.cookie="hello"+(new Date()).getTime();
+        this.setState({cookie: document.cookie});
+      }}>{"test cookie"}</button>
+    </div>);
+  }
+}
 
 initializeIcons();
 ReactDOM.render(
- <EventPage/>,
+    <Router>
+           <Route path="/" exact component={IndexPage} />
+          <Route path="/eventPage" component={EventPage} />
+          <Route path="/profilePage" component={EventPage} />
+    </Router>,
   document.getElementById('root')
 );
 //  <SlideBar events={eventList}/>
