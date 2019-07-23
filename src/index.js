@@ -22,11 +22,11 @@ ReactDOM.render(
   document.getElementById('root')
 );
 */
-const eventList=[...Array(15).keys()].map(i=>({title:"test"+i, eventInfo:eventInfoSample}));
+const eventList=[...Array(15).keys()].map(i=>({title:"test"+i, eventInfo:eventInfoSample, img:soccer}));
 const InterestList=["Tag1", "Tag2", "Tag3"]
 
 ReactDOM.render(
-      <Profile image={user} name={"Mr Mario"} Interest_tag={InterestList} events={eventList}/>,
+      <Profile image={user} name={"Mr Mario"} Interest_tag={InterestList} events={eventList} />,
   document.getElementById('root')
 );
 //  <SlideBar events={eventList}/>
