@@ -1,12 +1,35 @@
-.EventCard-margin{
+.SlideBar-top .EventCard-margin{
     margin-bottom: 15px;
 }
-.EventCard-top{
+.SlideBar-main .EventCard{
     margin-top:10px;
 }
-.NavButton{
-    width: 50px;
+.SlideBar-top .NavButton{
+    width: 40px;
+}
+.SlideBar-top .ms-Button{
+    border: 0px;
+    min-width: fit-content;
+    padding: 0px;
+}
+.SlideBar-top .ms-Button i{
+    font-size: 24px;
 }
 .SlideBar-top{
     text-align: right;
+}
+
+.SlideBar-main .SimpleBar{
+    height: 100%;
+    margin-left: 5px
+  }
+
+.SlideBar-main .ms-Panel-scrollableContent{
+  overflow-y: hidden;
+}  
+
+.SlideBar-main .ms-Panel-content{
+  display:contents;
+  height: 100%;
+  overflow-y: hidden;
 }

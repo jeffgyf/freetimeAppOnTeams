@@ -78,9 +78,9 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
     const { firstDayOfWeek } = this.state;
 
     return (
-      <div>
-        <DefaultButton secondaryText="Opens the Sample Dialog" onClick={this._showDialog} text="Create a New Event" />
-        <Dialog
+      <div className="CreateEventDialogButton">
+        <DefaultButton className="NavButton" onClick={this._showDialog} iconProps={{ iconName: 'AddEvent' }} />
+        <Dialog className="CreateEventDialog"
           maxWidth={1000}
           hidden={this.state.hideDialog}
           onDismiss={this._closeDialog}
