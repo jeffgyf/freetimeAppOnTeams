@@ -26,10 +26,7 @@ const eventList=[...Array(5).keys()].map(i=>({title:"test"+i, eventInfo:eventInf
 const InterestList=["Tag1", "Tag2", "Tag3"]
 
 ReactDOM.render(
-  <div>
-      <Profile image={user} name={"Mr Mario"} Interest_tag={InterestList}/>
-  </div>,
-
+      <Profile image={user} name={"Mr Mario"} Interest_tag={InterestList} events={eventList}/>,
   document.getElementById('root')
 );
 //  <SlideBar events={eventList}/>

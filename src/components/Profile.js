@@ -1,5 +1,6 @@
 import React from 'react';
 import InterestEventPickerState from './InterestEventPicker'
+import EventWall from './EventWall'
 import './Profile.css';
 
 
@@ -18,12 +19,11 @@ export default class Profile extends React.Component {
     }
     render() {
         return (
-            <div className="profile_main">
+            <body className="profile_main">
                 <div className="profile_inner">
                     <img className="user_image" src={this.props.image}/>
                     <div className="user_info">
                         <h1 className="user_name">{this.props.name}</h1>
-                        <div className="blank"></div>
                         <h2 className="interest_tag_name">Interest Tag:</h2>
                         <div className="interest_tag_main">
                             <div className="item">
@@ -41,8 +41,15 @@ export default class Profile extends React.Component {
                         </div>
                     </div>
                 </div>
-                
-            </div>
+                <div className="profile_bottom">
+                    <h1 className = "Events_title">
+                    ✤ Attended Events ✤
+                    </h1>
+                    <div className="profile_bottom_inner">
+                        <EventWall events={this.props.events} />
+                    </div>
+                </div>
+            </body>
         )
     }
 }

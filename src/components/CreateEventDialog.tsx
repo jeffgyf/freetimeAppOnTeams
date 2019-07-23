@@ -42,7 +42,7 @@ for (let k = 0; k < 2; k++) {
   var time = '';
   for (let i = 1; i <= 11; i++) {
     time = String(i);
-    for (let j = 0; j <= 2; j++) {
+    for (let j = 0; j < 2; j++) {
       if (j == 0) {
         time += ':00';
       } else {
@@ -78,9 +78,9 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
     const { firstDayOfWeek } = this.state;
 
     return (
-      <div>
-        <DefaultButton secondaryText="Opens the Sample Dialog" onClick={this._showDialog} text="Create a New Event" />
-        <Dialog
+      <div className="CreateEventDialogButton">
+        <DefaultButton className="NavButton" onClick={this._showDialog} iconProps={{ iconName: 'AddEvent' }} />
+        <Dialog className="CreateEventDialog"
           maxWidth={1000}
           hidden={this.state.hideDialog}
           onDismiss={this._closeDialog}
