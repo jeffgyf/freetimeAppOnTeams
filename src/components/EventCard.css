@@ -1,15 +1,17 @@
-.ms-TextField{
-  margin-bottom: 10px;
-}
+
 
 .ms-DocumentCard.event{
   user-select: auto;
-  width: 240px;
+  width: 120px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-.ms-DocumentCard.event .eventInfo{
+.ms-DocumentCard.event .eventInfo span{
+  font-size: 80%;
+}
 
+.ms-DocumentCard.event .eventInfo p{
+  margin:0px;
 }
 
 .ms-DocumentCard.event .joinButton{
@@ -25,7 +27,7 @@
 
 .ms-DocumentCard.event .title{
   font-weight: bold;
-  font-size: 120%;
+  font-size: 100%;
   margin: 0px;
 }
 

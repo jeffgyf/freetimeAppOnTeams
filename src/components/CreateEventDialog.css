@@ -1,0 +1,15 @@
+.ms-Dialog-main {
+    width: 60% /* Your maximum width here */
+}
+
+.ms-Dialog-subText{
+    display: flex;
+}
+
+.startTime {
+    display:flex;
+}
+
+.ms-DatePicker {
+    padding-right: 14px;
+}

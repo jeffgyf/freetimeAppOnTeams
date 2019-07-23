@@ -5,8 +5,11 @@ import Profile from './components/Profile'
 import {initializeIcons} from 'office-ui-fabric-react';
 import soccer from './soccer.png';
 import user from './user.jpg';
+import EventWall from './components/EventWall'
+import {initializeIcons} from 'office-ui-fabric-react';
+import './index.css';
+import Measure from 'react-measure'
 
-import SlideBar from './components/SlideBar';
 
 initializeIcons();
 const eventInfoSample={
@@ -28,6 +31,8 @@ ReactDOM.render(
   <div>
     <Profile image={user} name={"Wenynag Chao"} Interest_tag={InterestList}/>
   </div>,
-  document.getElementById('root')
-)
 
+  document.getElementById('root')
+);
+//  <SlideBar events={eventList}/>
+//   <EventCard title="Sample Event" eventInfo={eventInfoSample} img={soccer}/>
