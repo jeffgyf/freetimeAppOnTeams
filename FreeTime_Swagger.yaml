@@ -1,0 +1,213 @@
+swagger: "2.0"
+info:
+  description: "FreeTime App"
+  version: "1.0.0"
+  title: "FreeTime App"
+  termsOfService: "http://swagger.io/terms/"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+basePath: "/v2"
+tags:
+- name: "FreeTime"
+  description: "Everything about FreeTime"
+schemes:
+- "http"
+paths:
+  /signup:
+    post:
+      summary: "allow new user to signup"
+      consumes:
+      - "application/json"
+      produces:
+      - "text"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/SignupBody"
+      responses:
+        200:
+          description: "Succeed to Sign Up"
+        405:
+          description: "Method not allowed"
+        500:
+          description: "InternalError"
+        400:
+          description: "BadRequest"
+  /signin:
+    get:
+      summary: "allow user to signin"
+      produces:
+      - "text"
+      parameters:
+      - in: "query"
+        name: "username"
+        type: "string"
+      responses:
+        200:
+          description: "Succeed to Sign In"
+        405:
+          description: "Method not allowed"
+        500:
+          description: "InternalError"
+        400:
+          description: "BadRequest"
+  /createEvent:
+    post:
+      summary: "allow user to create event"
+      consumes:
+      - "application/json"
+      produces:
+      - "text"
+      parameters:
+      - in: "body"
+        name: "CreatEventBody"
+        schema:
+          $ref: "#/definitions/CreatEventBody"
+      responses:
+        200:
+          description: "Succeed to Create Event"
+        405:
+          description: "Method not allowed"
+        500:
+          description: "InternalError"
+        400:
+          description: "BadRequest"
+  /JoinEvent:
+    post:
+      summary: "allow user to join event"
+      consumes:
+      - "application/json"
+      produces:
+      - "text"
+      parameters:
+      - in: "body"
+        name: "JoinEventBody"
+        schema:
+          $ref: "#/definitions/JoinEventBody"
+      responses:
+        200:
+          description: "Succeed to Join Event"
+        405:
+          description: "Method not allowed"
+        500:
+          description: "InternalError"
+        400:
+          description: "BadRequest"
+  /GetEvents:
+    get:
+      summary: "allow user to get events"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "username"
+        type: "string"
+      responses:
+        200:
+          description: "Succeed to Get Events"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Event"
+        405:
+          description: "Method not allowed"
+        500:
+          description: "InternalError"
+        400:
+          description: "BadRequest"
+  /GetUserProfile:
+    get:
+      summary: "allow user to get profile"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "username"
+        type: "string"
+      responses:
+        200:
+          description: "Succeed to Get User Profile"
+          schema:
+            $ref: "#/definitions/Profile"
+        405:
+          description: "Method not allowed"
+        500:
+          description: "InternalError"
+        400:
+          description: "BadRequest"
+definitions:
+  SignupBody:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+        example: "xiaoming"
+      interests:
+        type: "string"
+        example: "football,basketball"
+  CreatEventBody:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+        example: "xiaoming"
+      name:
+        type: "string"
+        example: "xiaoming"
+      starttime:
+        type: "string"
+        example: "2017-01-01 00:00:00" 
+      location:
+        type: "string"
+        example: "microsoft building 76"
+      interests:
+        type: "string"
+        example: "football,basketball"
+  JoinEventBody:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+        example: "xiaoming"
+      eventid:
+        type: "string"
+        example: "1111-1111-1111-1111"
+  Event:
+    type: "object"
+    properties:
+      eventid:
+        type: "string"
+        example: "1111-1111-1111-2222"
+      name:
+        type: "string"
+        example: "read book"
+      ownerid:
+        type: "string"
+        example: "2222-2222-2222-2222"
+      starttime:
+        type: "string"
+        example: "2017-01-01 00:00:00" 
+      location:
+        type: "string"
+        example: "microsoft building 76"
+      ParticipantCount:
+        type: "integer"
+        example: 5
+      Description:
+        type: "string"
+        example: "read books in library"
+  Profile:
+    type: "object"
+    properties:
+      interests:
+        type: "array"
+        items:
+          type: "string"
+          example: "football"
+      events:
+        type: "array"
+        items: 
+          $ref: "#/definitions/Event"
+    

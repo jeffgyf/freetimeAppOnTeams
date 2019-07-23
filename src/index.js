@@ -3,30 +3,39 @@ import ReactDOM from 'react-dom';
 import EventCard from './components/EventCard'
 import Profile from './components/Profile'
 import {initializeIcons} from 'office-ui-fabric-react';
-import soccer from './soccer.png';
-import user from './user2.jpg';
-import EventWall from './components/EventWall'
-import './index.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-
-initializeIcons();
-const eventInfoSample={
-  location:"1 Microsoft Way, Redmond, WA",
-  date:"Friday, July 12, 2019",
-  time:"5:25pm"
+class IndexPage extends React.Component{
+  constructor(){
+    super();
+    this.state={cookie:document.cookie};
+  }
+  render(){
+    return (
+    <div>
+      <a href="/eventPage">{"eventPage"}</a>
+      <br/>
+      <a href="/profilePage">{"profilePage"}</a>
+      <p>{"cookie string: "+ this.state.cookie}</p>
+      <button onClick={()=> {
+        document.cookie="hello"+(new Date()).getTime();
+        this.setState({cookie: document.cookie});
+      }}>{"test cookie"}</button>
+    </div>);
+  }
 }
 
-/*
-ReactDOM.render(
-    <EventCard title="Sample Event" eventInfo={eventInfoSample} img={soccer}/>,
-  document.getElementById('root')
-);
-*/
-const eventList=[...Array(15).keys()].map(i=>({title:"test"+i, eventInfo:eventInfoSample, img:soccer}));
-const InterestList=["Tag1", "Tag2", "Tag3"]
+initializeIcons();
 
+//const eventList=[...Array(15).keys()].map(i=>({title:"test"+i, eventInfo:eventInfoSample, img:soccer}));
+//const InterestList=["Tag1", "Tag2", "Tag3"]
+//<Profile image={user} name={"Mr Mario"} Interest_tag={InterestList} events={eventList} />,
 ReactDOM.render(
-      <Profile image={user} name={"Mr Mario"} Interest_tag={InterestList} events={eventList} />,
+    <Router>
+           <Route path="/" exact component={IndexPage} />
+          <Route path="/eventPage" component={EventPage} />
+          <Route path="/profilePage" component={EventPage} />
+    </Router>,
   document.getElementById('root')
 );
 //  <SlideBar events={eventList}/>
