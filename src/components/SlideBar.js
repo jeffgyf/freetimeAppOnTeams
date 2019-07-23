@@ -5,10 +5,6 @@ import './SlideBar.css';
 
 import { DefaultButton, PrimaryButton, ChoiceGroup, Panel, PanelType, Fabric } from 'office-ui-fabric-react';
 
-var EventCardStyle = {
-    marginBottom: '15px'
-};
-
 export default class SlideBar extends React.Component {
     constructor(){
         super();
@@ -34,7 +30,7 @@ export default class SlideBar extends React.Component {
                 {
                     `
                     .ms-Panel-main{
-                        width: ${EventCard.Width + 33}px;
+                        width: ${EventCard.Width + 24}px;
                     }
                     
                     .ms-Panel-header{
@@ -59,9 +55,8 @@ export default class SlideBar extends React.Component {
                 //onRenderFooterContent={this._onRenderFooterContent}
                 closeButtonAriaLabel="Close">
                 
-                <div className="EventCard-top">
-                {this.props.events.map(e=><div className="EventCard-margin"><EventCard title={e.title} eventInfo={e.eventInfo}/></div>)}
-                </div>
+
+                {this.props.events.map(e=><EventCard title={e.title} eventInfo={e.eventInfo}/>)}
             </Panel>
             </style>
         </div>

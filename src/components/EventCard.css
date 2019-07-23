@@ -1,31 +1,31 @@
 
 
-.ms-DocumentCard.event{
+.ms-DocumentCard.EventCard{
   user-select: auto;
   width: 120px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-.ms-DocumentCard.event .eventInfo span{
+.ms-DocumentCard.EventCard .eventInfo span{
   font-size: 80%;
 }
 
-.ms-DocumentCard.event .eventInfo p{
+.ms-DocumentCard.EventCard .eventInfo p{
   margin:0px;
 }
 
-.ms-DocumentCard.event .joinButton{
+.ms-DocumentCard.EventCard .joinButton{
   position: absolute;
   bottom: -8px;
   right: -4px;
 }
 
-.ms-DocumentCard.event .content{
+.ms-DocumentCard.EventCard .content{
   margin: 8px;
   font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
 
-.ms-DocumentCard.event .title{
+.ms-DocumentCard.EventCard .title{
   font-weight: bold;
   font-size: 100%;
   margin: 0px;

@@ -1,4 +1,12 @@
 
-.EventTable .EventEntry{
+.EventWall .EventEntry{
   border: 6px solid white;
+}
+
+.EventWall{
+  overflow-y: scroll;
+  height: 95%; 
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 0%);
 }
