@@ -42,7 +42,7 @@ for (let k = 0; k < 2; k++) {
   var time = '';
   for (let i = 1; i <= 11; i++) {
     time = String(i);
-    for (let j = 0; j <= 2; j++) {
+    for (let j = 0; j < 2; j++) {
       if (j == 0) {
         time += ':00';
       } else {
