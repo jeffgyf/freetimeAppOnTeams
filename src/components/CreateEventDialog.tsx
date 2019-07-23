@@ -66,24 +66,13 @@ for (let k = 0; k < 2; k++) {
   }
 }
 
-const minuteOptions: IDropdownOption[] = [];
-for (let i = 0; i <= 60; i+=10) {
-  let minutePair: IDropdownOption = {key: i, text: String(i)};
-  minuteOptions.push(minutePair);
-}
-
-const ampmOptions: IDropdownOption[] = [
-  { key: 'am', text: 'AM' },
-  { key: 'pm', text: 'PM' },
-];
-
-export interface IDialogLargeHeaderExampleState {
+export interface CreateEventDialogState {
   hideDialog: boolean;
   firstDayOfWeek?: DayOfWeek;
 }
 
-export default class CreateEventDialog extends React.Component<{}, IDialogLargeHeaderExampleState> {
-  public state: IDialogLargeHeaderExampleState = { hideDialog: true, firstDayOfWeek: DayOfWeek.Sunday }
+export default class CreateEventDialog extends React.Component<{}, CreateEventDialogState> {
+  public state: CreateEventDialogState = { hideDialog: true, firstDayOfWeek: DayOfWeek.Sunday }
 
   public render() {
     const { firstDayOfWeek } = this.state;
