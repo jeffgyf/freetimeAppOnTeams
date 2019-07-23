@@ -4,6 +4,7 @@ import EventWall from './EventWall'
 import SlideBar from './SlideBar'
 import './EventPage.css';
 import soccer from '../soccer.png';
+import CreateEventDialog from './CreateEventDialog';
 
 
 export default class EventPage extends React.Component {
@@ -20,6 +21,7 @@ export default class EventPage extends React.Component {
         <div className="EventPage">
             <EventWall events={eventList}/>
             <SlideBar events={eventList}/>
+            <CreateEventDialog />
         </div>
       );
     }
