@@ -43,11 +43,11 @@ interface IChild {
 }  
 */
 
-export default class InterestEventPicker extends React.Component<{}, InterestEventPickerState> {
+export default class InterestEventPicker extends React.Component<{GetNewUserName: any}, InterestEventPickerState> {
   // All pickers extend from BasePicker specifying the item type.
   private _picker = React.createRef<IBasePicker<ITag>>();
 
-  constructor(props: {}) {
+  constructor(props: {GetNewUserName: any}) {
     super(props);
     this.state = {
       isPickerDisabled: false,
@@ -72,7 +72,9 @@ export default class InterestEventPicker extends React.Component<{}, InterestEve
           isBlocking: false,
           styles: { main: { maxWidth: 450 } }
         }}>
-        <TextField label="UserName" required placeholder="UserName" onChange={(event, username)=>this.setState({username})}/>
+        <TextField label="UserName" required placeholder="UserName" onChange={(event, username)=>{
+          this.setState({username})
+          }}/>
         <Label required={true}>{'Please type and pick your interest tag:'}</Label>
         <TagPicker
           onResolveSuggestions={this._onFilterChanged}
@@ -118,6 +120,7 @@ export default class InterestEventPicker extends React.Component<{}, InterestEve
   }
 
   private _closeDialog = (): void => {
+    this.props.GetNewUserName(this.state.username);
     this.setState({ hideDialog: true });
   };
 
