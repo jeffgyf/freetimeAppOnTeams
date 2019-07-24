@@ -37,6 +37,12 @@ const _testTags: ITag[] = [
   'social'
 ].map(item => ({ key: item, name: item }));
 
+/*
+interface IChild {  
+  GetNewUserName:(ParUserName:string)=>void;  
+}  
+*/
+
 export default class InterestEventPicker extends React.Component<{}, InterestEventPickerState> {
   // All pickers extend from BasePicker specifying the item type.
   private _picker = React.createRef<IBasePicker<ITag>>();
@@ -84,7 +90,7 @@ export default class InterestEventPicker extends React.Component<{}, InterestEve
           onChange={event=>this._onTagChange(event)}
         />
         <DialogFooter>
-            <PrimaryButton onClick={this._closeDialog} text="Save" />
+            <PrimaryButton onClick={this._closeDialog} text="Submit" />
             <DefaultButton onClick={this._closeDialog} text="Cancel" />
           </DialogFooter>
       </Dialog>
@@ -124,4 +130,10 @@ export default class InterestEventPicker extends React.Component<{}, InterestEve
     this.setState({interests: interestTags.substring(0, interestTags.length - 1)});
     console.log(this.state.interests);
   }
+
+  /*
+  private handleLangChange = (): void => {
+    this.props.GetNewUserName("xiaoming");
+  }
+  */
 }
