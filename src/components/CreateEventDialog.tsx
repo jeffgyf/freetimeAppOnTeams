@@ -3,11 +3,29 @@ import { Dialog, DialogType, DialogFooter } from 'office-ui-fabric-react/lib/Dia
 import { PrimaryButton, DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { DatePicker, DayOfWeek, IDatePickerStrings } from 'office-ui-fabric-react/lib/DatePicker';
+import { TagPicker, IBasePicker, ITag, TagItemSuggestion } from 'office-ui-fabric-react/lib/Pickers';
 import { Label } from 'office-ui-fabric-react/lib/Label';
 import { Dropdown, DropdownMenuItemType, IDropdownStyles, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import './CreateEventDialog.css';
+const $ = require( 'jquery');
 
-const _ = require('lodash');
+const _testTags: ITag[] = [
+  'basketball',
+  'baseball',
+  'movie',
+  'music',
+  'sports',
+  'pub',
+  'dining',
+  'travel',
+  'surfing',
+  'badminton',
+  'gym',
+  'coding',
+  'hackathon',
+  'sports',
+  'social'
+].map(item => ({ key: item, name: item }));
 
 const DayPickerStrings: IDatePickerStrings = {
   months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -69,13 +87,30 @@ for (let k = 0; k < 2; k++) {
 export interface CreateEventDialogState {
   hideDialog: boolean;
   firstDayOfWeek?: DayOfWeek;
+  eventName: String | undefined,
+  location: String | undefined,
+  startDate: Date | null | undefined,
+  startTime: IDropdownOption | undefined,
+  eventDescription: String | undefined,
+  interests: String | undefined,
+  isPickerDisabled: boolean,
 }
 
 export default class CreateEventDialog extends React.Component<{}, CreateEventDialogState> {
-  public state: CreateEventDialogState = { hideDialog: true, firstDayOfWeek: DayOfWeek.Sunday }
+  public state: CreateEventDialogState = { 
+    hideDialog: true, 
+    firstDayOfWeek: DayOfWeek.Sunday,
+    eventName: '',
+    location: '',
+    startDate: null,
+    startTime: undefined,
+    eventDescription: '',
+    interests: '',
+    isPickerDisabled: false,
+  }
 
   public render() {
-    const { firstDayOfWeek } = this.state;
+    const { firstDayOfWeek, eventName, location } = this.state;
 
     return (
       <div className="CreateEventDialogButton">
@@ -93,8 +128,8 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
             styles: { main: { maxWidth: 450 } }
           }}
         >
-          <TextField label="Event Title" required placeholder="Please enter event name here"/>
-          <TextField label="Location" required placeholder="Enter Location here"/>
+          <TextField label="Event Title" required placeholder="Please enter event name here" onChange={(event, eventName)=>this.setState({eventName})} />
+          <TextField label="Location" required placeholder="Enter Location here" onChange={(event, location)=>this.setState({location})}/>
           <div className="startTime">
             <DatePicker
               label="Start Date"
@@ -103,12 +138,14 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
               strings={DayPickerStrings}
               placeholder="Select a date..."
               ariaLabel="Select a date"
+              onSelectDate={(startDate)=>this.setState({startDate})}
             />
           
-            <Dropdown required={true} placeholder="Select Start Time" label="Start Time" options={timeOptions} styles={dropdownStyles} />
+            <Dropdown required={true} placeholder="Select Start Time" label="Start Time" 
+              options={timeOptions} styles={dropdownStyles} onChange={(event, startTime)=> this.setState({startTime})}/>
           </div>
 
-          <div className="startTime">
+          {/* <div className="startTime">
             <DatePicker
               label="End Date"
               isRequired={true}
@@ -116,14 +153,32 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
               strings={DayPickerStrings}
               placeholder="Select a date..."
               ariaLabel="Select a date"
+              onSelectDate={(endDate)=>this.setState({endDate})}
             />
-            <Dropdown required={true} placeholder="Select End Time" label="End Time" options={timeOptions} styles={dropdownStyles} />
-          </div>
+            <Dropdown required={true} placeholder="Select End Time" label="End Time" 
+              options={timeOptions} styles={dropdownStyles} 
+              onChange={(event, endTime)=> this.setState({endTime})}/>
+          </div> */}
           <Label required={true}>{'Please Upload Event Image'}</Label>
           <input type="file"></input>
-          <TextField label="Event description" multiline autoAdjustHeight />
+          <TagPicker
+            onResolveSuggestions={this._onFilterChanged}
+            getTextFromItem={this._getTextFromItem}
+            pickerSuggestionsProps={{
+              suggestionsHeaderText: 'Type your interest like "baseball" ',
+              noResultsFoundText: 'No Interest Tags Found'
+            }}
+            disabled={this.state.isPickerDisabled}
+            inputProps={{
+              onBlur: (ev: React.FocusEvent<HTMLInputElement>) => console.log('OnBlur called'),
+              onFocus: (ev: React.FocusEvent<HTMLInputElement>) => console.log('onFocus called'),
+              'aria-label': 'Tag Picker'
+            }}
+            onChange={event=>this._onTagChange(event)}
+          />
+          <TextField label="Event description" multiline autoAdjustHeight onChange={(event, eventDescription)=> this.setState({eventDescription})} />
           <DialogFooter>
-            <PrimaryButton onClick={this._closeDialog} text="Save" />
+            <PrimaryButton onClick={e=>this._closeDialogAndSubmit(e)} text="Save" />
             <DefaultButton onClick={this._closeDialog} text="Cancel" />
           </DialogFooter>
         </Dialog>
@@ -135,7 +190,81 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
     this.setState({ hideDialog: false });
   };
 
+  private _closeDialogAndSubmit = (e: any): void => {
+    this.setState({ hideDialog: true });
+    e.preventDefault();
+    const { eventName, location, startDate, startTime, eventDescription, interests } = this.state;
+    
+    let startDateTime: String = startDate ? String(startDate.getFullYear() + '-' + startDate.getMonth() + '-' + startDate.getDay()): '';
+    startDateTime = startDateTime +  ' ' + (startTime ? startTime.text : '');
+
+    const eventBody = { 
+      userName: 'xiaoming',
+      name: eventName,
+      startTime: startDateTime,
+      location: location,
+      interests: interests,
+    };
+
+    $.get({
+      method: 'GET',
+      url: 'https://ftallget.westus2.azurecontainer.io/createevent',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      // query parameters go under "data" as an Object
+      data: {
+        username: 'xiaoming',
+        name: eventName,
+        starttime: startDateTime,
+        location: location,
+        description: eventDescription,
+        interests: interests,
+      }
+  })
+  .then((res: any)=>{
+    console.log(res);
+  }).catch((error: any) => {
+    console.log(error);
+  })
+
+  };
+
+  private _getTextFromItem(item: ITag): string {
+    return item.name;
+  }
+
+  private _onFilterChanged = (filterText: string, tagList: ITag[] | undefined): ITag[] => {
+    const interests = filterText
+          ? _testTags
+              .filter(tag => tag.name.toLowerCase().indexOf(filterText.toLowerCase()) === 0)
+              .filter(tag => !this._listContainsDocument(tag, tagList))
+          : [];
+    let tags: Array<String> = [];
+    interests.forEach (tag=>{
+      tags.push(tag.name);
+    })
+    
+    return interests;
+  };
+
+  private _listContainsDocument(tag: ITag, tagList?: ITag[]) {
+    if (!tagList || !tagList.length || tagList.length === 0) {
+      return false;
+    }
+    return tagList.filter(compareTag => compareTag.key === tag.key).length > 0;
+  }
+
   private _closeDialog = (): void => {
     this.setState({ hideDialog: true });
   };
+
+  private _onTagChange = (event: any): void => {
+    let interestTags:String = '';
+    event.forEach((tag:ITag)=>{
+      interestTags = interestTags + tag.name + ',';
+    })
+
+    this.setState({interests: interestTags.substring(0, interestTags.length - 1)});
+  }
 }
