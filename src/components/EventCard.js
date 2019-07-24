@@ -6,7 +6,8 @@ import {
   ActionButton} from 'office-ui-fabric-react';
 import './EventCard.css';
 import { ImageFit } from 'office-ui-fabric-react/lib/Image';
-
+import $ from 'jquery';
+import config from '../config';
 var logo="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31";
 
 
@@ -34,7 +35,7 @@ export default class EventCard extends React.PureComponent {
               {this.props.interests? <p>{this.props.interests.reduce((s, i)=> s+";"+i)}</p>:null}
             </div>
             <div className="joinButton" hidden={this.props.img==null}>
-              <ActionButton data-automation-id="test" iconProps={{ iconName: 'Add' }} >
+              <ActionButton data-automation-id="test" iconProps={{ iconName: 'Add' }} onClick={()=>{this.eventJoinHandler()}}>
                 Join
               </ActionButton>
             </div>
@@ -47,5 +48,26 @@ export default class EventCard extends React.PureComponent {
 
       </DocumentCard>
     );
+  }
+
+  eventJoinHandler(){
+    this.postJoinEventAsync(this.props.eventId);
+  }
+
+  async postJoinEventAsync(eventId){
+    console.log(eventId);
+    let data={
+      eventId:eventId,
+      username:"xiaoming123"
+    };
+    try{
+      let rep=await $.get(config.BackEndAPIUrl+"/joinevent", data);
+      alert("join success");
+      console.log(rep);
+    }
+    catch(error){
+      alert("join failed");
+      console.log(error);
+    }
   }
 }

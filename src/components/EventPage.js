@@ -5,7 +5,8 @@ import SlideBar from './SlideBar'
 import './EventPage.css';
 import soccer from '../soccer.png';
 import CreateEventDialog from './CreateEventDialog';
-var $ = require("jquery");
+import $ from 'jquery';
+import config from '../config';
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -44,7 +45,7 @@ export default class EventPage extends React.Component {
     render() {
         return (
         <div className="EventPage">
-            <EventWall events={this.state.eventWallEventList}/>
+            <EventWall events={this.state.eventWallEventList} joinHandler={this.eventJoinHandler}/>
             <SlideBar events={this.state.SlideBarEventList}/>
             <CreateEventDialog />
         </div>
@@ -53,16 +54,17 @@ export default class EventPage extends React.Component {
 
     async getEventsToJoinAsync(){
       try{
-        let parsedEvents=await $.get("http://freetime.westus2.azurecontainer.io:8080/getallevents");
-        console.log(parsedEvents);
+        let parsedEvents=await $.get(config.BackEndAPIUrl+"/getallevents");
+        //console.log(parsedEvents);
         let eventList=parsedEvents.map(ff=>({
-          title: ff.Name,
+          title: ff.Event.Name,
           eventInfo:{
-            location: ff.Location, 
-            time: ff.StartTime,
+            location: ff.Event.Location, 
+            time: ff.Event.StartTime,
           },
-          interests:[...Array(3).keys()].map(i=>"inter"+i),
-          img: soccer
+          interests:ff.Interests,
+          img: soccer,
+          eventId:ff.Event.EventID,
         }));
         return eventList;
       }
@@ -74,17 +76,18 @@ export default class EventPage extends React.Component {
 
     async getEventsJoinedAsync(){
       try{
-        let parsedEvents=await $.get("http://freetime.westus2.azurecontainer.io:8080/getjoinedevents?username=xiaoming");
+        let parsedEvents=await $.get(config.BackEndAPIUrl+"/getjoinedevents?username=xiaoming123");
+        console.log("parsedEvent");
         console.log(parsedEvents);
         let eventList=parsedEvents.map(ff=>({
           title: ff.Name,
           eventInfo:{
             location: ff.Location, 
-            time: ff.StartTime,
-            interests:[...Array(3).keys()].map(i=>"inter"+i),
+            time: ff.StartTime
           },
           img: soccer
         }));
+        
         return eventList;
       }
       catch(error){
@@ -94,5 +97,7 @@ export default class EventPage extends React.Component {
       const eventList=[...Array(10).keys()].map(i=> ({title:"Test"+i, eventInfo:eventInfoSample, img:soccer}));
       return eventList;
     }
+
+
 }
 
