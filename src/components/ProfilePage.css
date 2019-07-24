@@ -1,0 +1,93 @@
+.user_image{
+    border-radius: 50%;
+    margin:45px;
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+}
+
+.profile_main{
+    height: 800px;
+    background-color: #f3f2f1;
+}
+
+.profile_inner{
+    position: relative;
+    top: 10px;
+    background-color: white;
+    display: flex;
+    height: 50%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.user_info{
+    position: relative;
+    margin-top: 30px;
+    width: 55%;
+}
+
+
+.user_name{
+    font-size: 45px;
+    color: #666;
+    font-family: Roboto,Arial,sans-serif;
+}
+
+.interest_tag_name{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 23px;
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+    font-style: oblique;
+}
+
+.item{
+    display: flex;
+    overflow: auto;
+    flex: 1;
+    flex-flow: row wrap;
+}
+
+.tag_text{
+    font-family: Roboto,Arial,sans-serif;
+    text-align: center;
+    position: relative;
+    box-sizing: content-box;
+    flex-shrink: 1;
+    margin-top: 3px;
+    margin-right: 10px;
+    margin-bottom: 2px;
+    padding: 3px;
+    height: 26px;
+    line-height: 26px;
+    max-width: 300px;
+    color: rgb(255, 255, 255);
+    border-radius: 2px;
+    background: rgb(0, 120, 212);
+}
+
+.profile_bottom{
+    background: white;
+    margin-top: 2%;
+    margin-right: 5%;
+    margin-left: 5%;
+    height: 360px;
+}
+
+.profile_bottom_inner{
+    margin-top: 1%;
+    height: 260px;
+    position: relative;
+}
+
+.Events_title{
+    color: #91775c;
+    font-weight:bolder;
+    padding-top:15px;
+    position: relative;
+    font-size: 25px;
+    font-family: 'Cinzel Decorative', cursive;
+    text-align: center;
+}
+
