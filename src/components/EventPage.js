@@ -40,15 +40,19 @@ export default class EventPage extends React.Component {
         SlideBarEventList:[]
       };
       this.getEventsToJoinAsync().then(d=>this.setState({eventWallEventList:d}));
-      this.getEventsJoinedAsync().then(d=>this.setState({SlideBarEventList:d}));
+      this.refreshJoinedEvents();
 
+    }
+
+    refreshJoinedEvents(){
+      this.getEventsJoinedAsync().then(d=>this.setState({SlideBarEventList:d}));
     }
     
     render() {
         return (
         <div className="EventPage">
             <CookieCheck/>
-            <EventWall events={this.state.eventWallEventList} joinHandler={this.eventJoinHandler}/>
+            <EventWall events={this.state.eventWallEventList} refreshJoinedHandler={()=>this.refreshJoinedEvents()}/>
             <SlideBar events={this.state.SlideBarEventList}/>
             <CreateEventDialog />
         </div>
@@ -100,9 +104,6 @@ export default class EventPage extends React.Component {
         console.log(error);
         return [];
       }
-
-      const eventList=[...Array(10).keys()].map(i=> ({title:"Test"+i, eventInfo:eventInfoSample, img:soccer}));
-      return eventList;
     }
 
 
