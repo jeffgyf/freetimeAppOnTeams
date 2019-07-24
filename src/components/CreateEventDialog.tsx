@@ -54,8 +54,8 @@ const dropdownStyles: Partial<IDropdownStyles> = {
 };
 
 const timeOptions: IDropdownOption[] = [];
-timeOptions.push({key: '12:00 am', text: '12:00 am'});
-timeOptions.push({key: '12:30 am', text: '12:30 am'});
+timeOptions.push({key: '12:00am', text: '12:00am'});
+timeOptions.push({key: '12:30am', text: '12:30am'});
 
 for (let k = 0; k < 2; k++) {
   var time = '';
@@ -80,8 +80,8 @@ for (let k = 0; k < 2; k++) {
   }
   
   if (k == 0) {
-    timeOptions.push({key: '12:00 pm', text: '12:00 pm'});
-    timeOptions.push({key: '12:30 pm', text: '12:30 pm'});
+    timeOptions.push({key: '12:00pm', text: '12:00pm'});
+    timeOptions.push({key: '12:30pm', text: '12:30pm'});
   }
 }
 
