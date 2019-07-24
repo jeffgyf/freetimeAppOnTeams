@@ -8,6 +8,7 @@ import './EventCard.css';
 import { ImageFit } from 'office-ui-fabric-react/lib/Image';
 import $ from 'jquery';
 import config from '../config';
+import CookieCheck from './CookieCheck';
 var logo="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31";
 
 
@@ -56,14 +57,16 @@ export default class EventCard extends React.PureComponent {
 
   async postJoinEventAsync(eventId){
     console.log(eventId);
+    let username=await CookieCheck.UserNamePromise;
     let data={
       eventId:eventId,
-      username:"xiaoming123"
+      username:username
     };
     try{
-      let rep=await $.get(config.BackEndAPIUrl+"/joinevent", data);
+      let resp=await $.post(config.BackEndAPIUrl+"/joinevent", JSON.stringify(data));
       alert("join success");
-      console.log(rep);
+      console.log(resp);
+      this.props.refreshJoinedHandler();
     }
     catch(error){
       alert("join failed");
