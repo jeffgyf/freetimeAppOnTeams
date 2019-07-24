@@ -53,8 +53,8 @@ const dropdownStyles: Partial<IDropdownStyles> = {
 };
 
 const timeOptions: IDropdownOption[] = [];
-timeOptions.push({key: '12:00 am', text: '12:00 am'});
-timeOptions.push({key: '12:30 am', text: '12:30 am'});
+timeOptions.push({key: '12:00am', text: '12:00am'});
+timeOptions.push({key: '12:30am', text: '12:30am'});
 
 for (let k = 0; k < 2; k++) {
   var time = '';
@@ -79,8 +79,8 @@ for (let k = 0; k < 2; k++) {
   }
   
   if (k == 0) {
-    timeOptions.push({key: '12:00 pm', text: '12:00 pm'});
-    timeOptions.push({key: '12:30 pm', text: '12:30 pm'});
+    timeOptions.push({key: '12:00pm', text: '12:00pm'});
+    timeOptions.push({key: '12:30pm', text: '12:30pm'});
   }
 }
 
@@ -161,6 +161,7 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
           </div> */}
           <Label required={true}>{'Please Upload Event Image'}</Label>
           <input type="file"></input>
+          <Label required={true}>{'Please type and pick your interest tag:'}</Label>
           <TagPicker
             onResolveSuggestions={this._onFilterChanged}
             getTextFromItem={this._getTextFromItem}
@@ -198,35 +199,40 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
     let startDateTime: String = startDate ? String(startDate.getFullYear() + '-' + startDate.getMonth() + '-' + startDate.getDay()): '';
     startDateTime = startDateTime +  ' ' + (startTime ? startTime.text : '');
 
-    const eventBody = { 
-      userName: 'xiaoming',
+    const data = {
+      username: 'xiaoming',
       name: eventName,
-      startTime: startDateTime,
+      starttime: startDateTime,
       location: location,
+      description: eventDescription,
       interests: interests,
     };
-
-    $.get({
-      method: 'GET',
-      url: 'https://ftallget.westus2.azurecontainer.io/createevent',
-      headers: {
-          'Content-Type': 'application/json',
-      },
+    
+    $.ajax({
       // query parameters go under "data" as an Object
-      data: {
-        username: 'xiaoming',
-        name: eventName,
-        starttime: startDateTime,
-        location: location,
-        description: eventDescription,
-        interests: interests,
-      }
-  })
-  .then((res: any)=>{
+      type: 'POST',
+      url: 'https://ftubuntu.westus2.azurecontainer.io/createevent',
+      data: JSON.stringify(data),
+      ContentType:"application/json",
+      DataType: "json"
+    }).then((res: any)=>{
     console.log(res);
   }).catch((error: any) => {
     console.log(error);
   })
+    // axios.post('http://ftubuntu.westus2.azurecontainer.io/createevent', 
+    //   {
+    //     username: 'xiaoming',
+    //     name: eventName,
+    //     starttime: startDateTime,
+    //     location: location,
+    //     description: eventDescription,
+    //     interests: interests,
+    //   }).then((res: any) => {
+    //     console.log(res);
+    //   }).catch((error: any) => {
+    //     console.log(error);
+    //   })
 
   };
 
