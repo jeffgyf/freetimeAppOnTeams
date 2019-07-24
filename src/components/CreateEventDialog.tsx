@@ -95,7 +95,7 @@ const ampmOptions: IDropdownOption[] = [
   { key: 'pm', text: 'PM' },
 ];
 
-export interface IDialogLargeHeaderExampleState {
+export interface CreateEventDialogState {
   hideDialog: boolean;
   firstDayOfWeek?: DayOfWeek;
   eventName: String | undefined,
@@ -107,10 +107,6 @@ export interface IDialogLargeHeaderExampleState {
   isPickerDisabled: boolean,
 }
 
-<<<<<<< Updated upstream
-export default class CreateEventDialog extends React.Component<{}, IDialogLargeHeaderExampleState> {
-  public state: IDialogLargeHeaderExampleState = { hideDialog: true, firstDayOfWeek: DayOfWeek.Sunday }
-=======
 export default class CreateEventDialog extends React.Component<{}, CreateEventDialogState> {
   public state: CreateEventDialogState = { 
     hideDialog: true, 
@@ -123,7 +119,6 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
     interests: '',
     isPickerDisabled: false,
   }
->>>>>>> Stashed changes
 
   public render() {
     const { firstDayOfWeek, eventName, location } = this.state;
