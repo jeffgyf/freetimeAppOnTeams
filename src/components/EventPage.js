@@ -5,6 +5,7 @@ import SlideBar from './SlideBar'
 import './EventPage.css';
 import soccer from '../soccer.png';
 import CreateEventDialog from './CreateEventDialog';
+var $ = require("jquery");
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -52,14 +53,13 @@ export default class EventPage extends React.Component {
 
     async getEventsToJoinAsync(){
       try{
-        await sleep(1000);
-        //parsedEvents=JSON.parse();
-        let parsedEvents=fakeEvents;
+        let parsedEvents=await $.get("http://freetime.westus2.azurecontainer.io:8080/getallevents");
+        console.log(parsedEvents);
         let eventList=parsedEvents.map(ff=>({
-          title: ff.name,
+          title: ff.Name,
           eventInfo:{
-            location: ff.location, 
-            time: ff.starttime,
+            location: ff.Location, 
+            time: ff.StartTime,
           },
           interests:[...Array(3).keys()].map(i=>"inter"+i),
           img: soccer
@@ -74,14 +74,13 @@ export default class EventPage extends React.Component {
 
     async getEventsJoinedAsync(){
       try{
-        await sleep(1000);
-        //parsedEvents=JSON.parse();
-        let parsedEvents=fakeEvents;
+        let parsedEvents=await $.get("http://freetime.westus2.azurecontainer.io:8080/getjoinedevents?username=xiaoming");
+        console.log(parsedEvents);
         let eventList=parsedEvents.map(ff=>({
-          title: ff.name,
+          title: ff.Name,
           eventInfo:{
-            location: ff.location, 
-            time: ff.starttime,
+            location: ff.Location, 
+            time: ff.StartTime,
             interests:[...Array(3).keys()].map(i=>"inter"+i),
           },
           img: soccer
