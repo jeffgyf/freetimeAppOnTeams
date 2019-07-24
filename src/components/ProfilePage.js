@@ -45,7 +45,6 @@ export default class Profile extends React.Component {
 
         try{
             let UserName = await CookieCheck.UserName;
-            console.log(UserName);
             //https://freetimehttpstest.westus2.azurecontainer.io/getuserprofile?username=
             let parsedUserProfile=await $.get("https://freetimehttpstest.westus2.azurecontainer.io/getuserprofile?username=" + UserName);
             console.log(parsedUserProfile);
@@ -57,7 +56,6 @@ export default class Profile extends React.Component {
               },
               img: soccer
             }));
-            console.log(parsedUserProfile.Interests.length);
             var dict = {
                 UserName:UserName,
                 eventList:eventList,
