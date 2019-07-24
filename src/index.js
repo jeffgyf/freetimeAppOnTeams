@@ -1,7 +1,8 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import EventCard from './components/EventCard'
-import Profile from './components/Profile'
+import EventPage from './components/EventPage'
+import ProfilePage from './components/ProfilePage'
 import {initializeIcons} from 'office-ui-fabric-react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -15,7 +16,7 @@ class IndexPage extends React.Component{
     <div>
       <a href="/eventPage">{"eventPage"}</a>
       <br/>
-      <a href="/profilePage">{"profilePage"}</a>
+      <a href="/profilePage">{"ProfilePage"}</a>
       <p>{"cookie string: "+ this.state.cookie}</p>
       <button onClick={()=> {
         document.cookie="hello"+(new Date()).getTime();
@@ -34,7 +35,7 @@ ReactDOM.render(
     <Router>
            <Route path="/" exact component={IndexPage} />
           <Route path="/eventPage" component={EventPage} />
-          <Route path="/profilePage" component={EventPage} />
+          <Route path="/profilePage" component={ProfilePage} />
     </Router>,
   document.getElementById('root')
 );
