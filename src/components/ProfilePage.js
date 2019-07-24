@@ -50,7 +50,7 @@ export default class Profile extends React.Component {
             //https://freetimehttpstest.westus2.azurecontainer.io/getuserprofile?username=
             let parsedUserProfile=await $.get(config.BackEndAPIUrl+"/getuserprofile?username=" + UserName);
             console.log(parsedUserProfile);
-            let eventList=parsedUserProfile.Events.map(ff=>({
+            let eventList=parsedUserProfile.Events==null?[]:parsedUserProfile.Events.map(ff=>({
               title: ff.Name,
               eventInfo:{
                 location: ff.Location, 
@@ -66,7 +66,7 @@ export default class Profile extends React.Component {
             return dict;
           }
         catch(error){
-            alert("Failed to get username");
+            alert("Failed to get user profile");
             console.log(error);
             return {
                 UserName:"",

@@ -7,7 +7,6 @@ import { Label } from 'office-ui-fabric-react/lib/Label';
 import { Dialog, DialogType, DialogFooter } from 'office-ui-fabric-react/lib/Dialog';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import './InterestEventPicker.css';
-import axios from 'axios';
 const $ = require( 'jquery');
 
 const rootClass = mergeStyles({
@@ -123,7 +122,9 @@ export default class InterestEventPicker extends React.Component<{GetNewUserName
     })
     .then((res: any)=>{
       console.log(res);
+      this.props.GetNewUserName(this.state.username);
     }).catch((error: any) => {
+      alert("sign up failed")
       console.log(error);
     })
 
@@ -159,7 +160,6 @@ export default class InterestEventPicker extends React.Component<{GetNewUserName
   }
 
   private _closeDialog = (): void => {
-    this.props.GetNewUserName(this.state.username);
     this.setState({ hideDialog: true });
   };
 

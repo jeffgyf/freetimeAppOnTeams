@@ -7,7 +7,6 @@ import { TagPicker, IBasePicker, ITag, TagItemSuggestion } from 'office-ui-fabri
 import { Label } from 'office-ui-fabric-react/lib/Label';
 import { Dropdown, DropdownMenuItemType, IDropdownStyles, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import './CreateEventDialog.css';
-import axios from 'axios';
 const $ = require( 'jquery');
 
 const _testTags: ITag[] = [
