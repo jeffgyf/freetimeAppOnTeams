@@ -45,7 +45,7 @@ export default class InterestEventPicker extends React.Component<{}, InterestEve
     super(props);
     this.state = {
       isPickerDisabled: false,
-      hideDialog: true,
+      hideDialog: false,
       username: '',
       interests: '',
     };
@@ -54,14 +54,13 @@ export default class InterestEventPicker extends React.Component<{}, InterestEve
   public render() {
     return (
       <div className={rootClass}>
-      <DefaultButton secondaryText="Sign up" onClick={this._showDialog} text="Sign up" />
       <Dialog
         maxWidth={1000}
         hidden={this.state.hideDialog}
         onDismiss={this._closeDialog}
         dialogContentProps={{
           type: DialogType.largeHeader,
-          title: 'Create your event',
+          title: 'Sign Up',
         }}
         modalProps={{
           isBlocking: false,
@@ -111,10 +110,6 @@ export default class InterestEventPicker extends React.Component<{}, InterestEve
     }
     return tagList.filter(compareTag => compareTag.key === tag.key).length > 0;
   }
-
-  private _showDialog = (): void => {
-    this.setState({ hideDialog: false });
-  };
 
   private _closeDialog = (): void => {
     this.setState({ hideDialog: true });
