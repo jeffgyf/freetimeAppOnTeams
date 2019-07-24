@@ -7,6 +7,7 @@ import soccer from '../soccer.png';
 import CreateEventDialog from './CreateEventDialog';
 import $ from 'jquery';
 import config from '../config';
+import CookieCheck from "./CookieCheck";
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -31,8 +32,9 @@ const fakeEvents=[
 
 
 export default class EventPage extends React.Component {
-    constructor(){
-      super();
+    constructor(props){
+      super(props);
+      
       this.state={
         eventWallEventList:[],
         SlideBarEventList:[]
@@ -45,6 +47,7 @@ export default class EventPage extends React.Component {
     render() {
         return (
         <div className="EventPage">
+            <CookieCheck/>
             <EventWall events={this.state.eventWallEventList} joinHandler={this.eventJoinHandler}/>
             <SlideBar events={this.state.SlideBarEventList}/>
             <CreateEventDialog />
@@ -75,8 +78,10 @@ export default class EventPage extends React.Component {
     }
 
     async getEventsJoinedAsync(){
+      let userName = await CookieCheck.UserNamePromise;
       try{
-        let parsedEvents=await $.get(config.BackEndAPIUrl+"/getjoinedevents?username=xiaoming123");
+        
+        let parsedEvents=await $.get(config.BackEndAPIUrl+"/getjoinedevents?username="+userName);
         console.log("parsedEvent");
         console.log(parsedEvents);
         let eventList=parsedEvents.map(ff=>({
@@ -91,6 +96,8 @@ export default class EventPage extends React.Component {
         return eventList;
       }
       catch(error){
+        alert("failed to get joined events for "+userName)
+        console.log(error);
         return [];
       }
 

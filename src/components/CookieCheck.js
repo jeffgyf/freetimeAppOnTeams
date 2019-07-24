@@ -15,6 +15,7 @@ async function GetUserNameAsync(){
             }
         });
         username = await NewUserName;
+        document.cookie = `username=<${username}>`;
     }
     CookieCheck.IsUserNameSet=true;
     return username;
@@ -22,7 +23,6 @@ async function GetUserNameAsync(){
 
 function ParseCookie(){
     var x = document.cookie;
-    document.cookie = "username=<xiaoming>";
     console.log(document.cookie);
     var pos = x.indexOf("username=<")
     if(pos < 0){

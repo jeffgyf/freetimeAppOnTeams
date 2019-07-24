@@ -16,13 +16,7 @@ class IndexPage extends React.Component{
     <div>
       <a href="/eventPage">{"eventPage"}</a>
       <br/>
-<<<<<<< HEAD
-      <a href="/profilePage">{"profilePage"}</a>
-      <br/>
-      <a href="/signOn">{"signOn"}</a>
-=======
       <a href="/profilePage">{"ProfilePage"}</a>
->>>>>>> master
       <p>{"cookie string: "+ this.state.cookie}</p>
       <button onClick={()=> {
         document.cookie="hello"+(new Date()).getTime();
@@ -41,12 +35,7 @@ ReactDOM.render(
     <Router>
           <Route path="/" exact component={IndexPage} />
           <Route path="/eventPage" component={EventPage} />
-<<<<<<< HEAD
-          <Route path="/profilePage" component={EventPage} />
-          <Route path="/signOn" component={InterestEventPicker} />
-=======
           <Route path="/profilePage" component={ProfilePage} />
->>>>>>> master
     </Router>,
   document.getElementById('root')
 );
