@@ -16,6 +16,7 @@ async function GetUserNameAsync(){
         });
         username = await NewUserName;
         document.cookie = `username=<${username}>`;
+        document.cookie = "expires=Thu, 18 Dec 2030 12:00:00 UTC"
     }
     CookieCheck.IsUserNameSet=true;
     return username;
