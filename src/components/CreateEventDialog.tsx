@@ -60,7 +60,7 @@ for (let k = 0; k < 2; k++) {
   var time = '';
   for (let i = 1; i <= 11; i++) {
     time = String(i);
-    for (let j = 0; j <= 2; j++) {
+    for (let j = 0; j < 2; j++) {
       if (j == 0) {
         time += ':00';
       } else {
@@ -83,17 +83,6 @@ for (let k = 0; k < 2; k++) {
     timeOptions.push({key: '12:30 pm', text: '12:30 pm'});
   }
 }
-
-const minuteOptions: IDropdownOption[] = [];
-for (let i = 0; i <= 60; i+=10) {
-  let minutePair: IDropdownOption = {key: i, text: String(i)};
-  minuteOptions.push(minutePair);
-}
-
-const ampmOptions: IDropdownOption[] = [
-  { key: 'am', text: 'AM' },
-  { key: 'pm', text: 'PM' },
-];
 
 export interface CreateEventDialogState {
   hideDialog: boolean;
@@ -124,9 +113,9 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
     const { firstDayOfWeek, eventName, location } = this.state;
 
     return (
-      <div>
-        <DefaultButton secondaryText="Opens the Sample Dialog" onClick={this._showDialog} text="Create a New Event" />
-        <Dialog
+      <div className="CreateEventDialogButton">
+        <DefaultButton className="NavButton" onClick={this._showDialog} iconProps={{ iconName: 'AddEvent' }} />
+        <Dialog className="CreateEventDialog"
           maxWidth={1000}
           hidden={this.state.hideDialog}
           onDismiss={this._closeDialog}

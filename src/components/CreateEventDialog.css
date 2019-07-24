@@ -1,15 +1,34 @@
-.ms-Dialog-main {
-    width: 60% /* Your maximum width here */
+.CreateEventDialog .ms-Dialog-main {
+    width: 400px;
 }
 
-.ms-Dialog-subText{
+.CreateEventDialog .ms-Dialog-subText{
     display: flex;
 }
 
-.startTime {
+.CreateEventDialog .startTime {
     display:flex;
 }
 
-.ms-DatePicker {
+.CreateEventDialog .ms-DatePicker {
     padding-right: 14px;
+}
+
+.CreateEventDialogButton{
+    text-align: right;
+}
+
+
+.CreateEventDialogButton .NavButton{
+    width: 40px;
+}
+
+.CreateEventDialogButton .ms-Button{
+    border: 0px;
+    min-width: fit-content;
+    padding: 0px;
+}
+
+.CreateEventDialogButton .ms-Button i{
+    font-size: 24px;
 }

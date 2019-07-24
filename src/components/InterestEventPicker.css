@@ -1,0 +1,12 @@
+.ms-TagItem-close{
+    width: 30px;
+}
+
+.ms-Dialog-main {
+    width: 50% /* Your maximum width here */
+}
+
+.ms-TagItem-text {
+    display:flex;
+    overflow: visible;
+}

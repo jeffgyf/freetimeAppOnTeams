@@ -1,77 +1,32 @@
-.ms-TextField{
-  margin-bottom: 10px;
-}
 
-.ms-DocumentCard.event{
+
+.ms-DocumentCard.EventCard{
   user-select: auto;
-  width: 240px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  min-width: 0px;
 }
 
-.ms-DocumentCard.event .eventInfo{
-
+.ms-DocumentCard.EventCard .eventInfo span{
+  font-size: 80%;
 }
 
-.ms-DocumentCard.event .joinButton{
+.ms-DocumentCard.EventCard .eventInfo p{
+  margin:0px;
+}
+
+.ms-DocumentCard.EventCard .joinButton{
   position: absolute;
   bottom: -8px;
   right: -4px;
 }
 
-.ms-DocumentCard.event .content{
+.ms-DocumentCard.EventCard .content{
   margin: 8px;
   font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
 
-.ms-DocumentCard.event .title{
+.ms-DocumentCard.EventCard .title{
   font-weight: bold;
-  font-size: 120%;
+  font-size: 100%;
   margin: 0px;
-}
-
-.ms-Button {
-  width: 100%;
-
-}
-
-.logo {
-  text-align: center;
-  margin-bottom: 20px;
-  height: 35px;
-}
-.logo i {
-  display: block;
-  padding: 20px 0 0 0;
-  font-size: 70px;
-  transform: translateX(-5px);
-}
-.logo span {
-  color: rgba(0, 0, 0, 0.7);
-  text-transform: uppercase;
-}
-
-.logo img {
-  height: 40px;
-}
-
-.LoginPanel {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  width: 200px;
-  transform: translate(-50%, -50%);
-  background-size: cover;
-  border-radius: 5px;
-}
-.LoginPanel a {
-  display: block;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 12px;
-  text-align: center;
-  text-decoration: none;
-  margin: 4px 0 10px 0;
-  margin: 10px;
-}
-.LoginPanel a:hover {
-  text-decoration: underline;
 }

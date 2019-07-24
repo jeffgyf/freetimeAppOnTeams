@@ -13,29 +13,26 @@ var logo="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFi
 
 
 export default class EventCard extends React.PureComponent {
-  static Width=240;
+  static Width=200;
   render() {
     const previewProps= {
-      previewImages: [
-        {
+      previewImages: [{
           previewImageSrc: this.props.img,
           imageFit: ImageFit.cover,
-          width: this.Width,
-          height: 150
+          width: EventCard.Width,
+          height: 120
         }
       ]
     };
 
 
     return (
-      <DocumentCard className="event">
+      <DocumentCard className="EventCard" style={{ width: EventCard.Width+'px' }}>
         {this.props.img ? <DocumentCardPreview {...previewProps}/>:null}
         <div className="content">
           <p className="title">{this.props.title}</p>
             <div className="eventInfo">
-              <table>
-                {Object.keys(this.props.eventInfo).map(i=> <tr><Text>{this.props.eventInfo[i]}</Text></tr>)}
-              </table>
+              {Object.keys(this.props.eventInfo).map(i=> <p><Text>{this.props.eventInfo[i]}</Text></p>)}
             </div>
             <div className="joinButton" hidden={this.props.img==null}>
               <ActionButton data-automation-id="test" iconProps={{ iconName: 'Add' }} >
@@ -51,13 +48,5 @@ export default class EventCard extends React.PureComponent {
 
       </DocumentCard>
     );
-  }
-}
-
-class Logo extends React.Component {
-  render() {
-    return <div className="logo">
-                <img src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31" alt="Logo"/>
-              </div>
   }
 }
