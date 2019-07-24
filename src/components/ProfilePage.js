@@ -46,7 +46,7 @@ export default class Profile extends React.Component {
         try{
             let UserName = await CookieCheck.UserName;
             //https://freetimehttpstest.westus2.azurecontainer.io/getuserprofile?username=
-            let parsedUserProfile=await $.get("https://freetimehttpstest.westus2.azurecontainer.io/getuserprofile?username=" + UserName);
+            let parsedUserProfile=await $.get("http://ftubuntu.westus2.azurecontainer.io?username=" + UserName);
             console.log(parsedUserProfile);
             let eventList=parsedUserProfile.Events.map(ff=>({
               title: ff.Name,

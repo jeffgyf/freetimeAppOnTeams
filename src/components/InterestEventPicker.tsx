@@ -7,6 +7,8 @@ import { Label } from 'office-ui-fabric-react/lib/Label';
 import { Dialog, DialogType, DialogFooter } from 'office-ui-fabric-react/lib/Dialog';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import './InterestEventPicker.css';
+import axios from 'axios';
+const $ = require( 'jquery');
 
 const rootClass = mergeStyles({
   maxWidth: 1000
@@ -66,7 +68,7 @@ export default class InterestEventPicker extends React.Component<{}, InterestEve
         onDismiss={this._closeDialog}
         dialogContentProps={{
           type: DialogType.largeHeader,
-          title: 'Sign Up',
+          title: 'Sign up',
         }}
         modalProps={{
           isBlocking: false,
@@ -90,13 +92,50 @@ export default class InterestEventPicker extends React.Component<{}, InterestEve
           onChange={event=>this._onTagChange(event)}
         />
         <DialogFooter>
-            <PrimaryButton onClick={this._closeDialog} text="Submit" />
+            <PrimaryButton onClick={this._closeDialogAndSubmit} text="Sign up" />
             <DefaultButton onClick={this._closeDialog} text="Cancel" />
           </DialogFooter>
       </Dialog>
       </div>
     );
   }
+  
+
+  private _closeDialogAndSubmit = (e: any): void => {
+    this.setState({ hideDialog: true });
+    e.preventDefault();
+    const { username, interests } = this.state;
+
+    const data = {
+        username: username,
+        interests: interests,
+    };
+
+    $.ajax({
+      // query parameters go under "data" as an Object
+      type: 'POST',
+      url: 'https://ftubuntu.westus2.azurecontainer.io/signup',
+      data: JSON.stringify(data),
+      ContentType:"application/json",
+      DataType: "json"
+    })
+    .then((res: any)=>{
+      console.log(res);
+    }).catch((error: any) => {
+      console.log(error);
+    })
+
+    // axios.post('https://ftubuntu.westus2.azurecontainer.io/signup', 
+    // {
+    //   username: username,
+    //   interests: interests,
+    // }).then((res: any) => {
+    //   console.log(res);
+    // }).catch((error: any) => {
+    //   console.log(error);
+    // })
+
+  };
 
   private _getTextFromItem(item: ITag): string {
     return item.name;

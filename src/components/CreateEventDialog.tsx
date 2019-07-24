@@ -7,6 +7,7 @@ import { TagPicker, IBasePicker, ITag, TagItemSuggestion } from 'office-ui-fabri
 import { Label } from 'office-ui-fabric-react/lib/Label';
 import { Dropdown, DropdownMenuItemType, IDropdownStyles, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import './CreateEventDialog.css';
+import axios from 'axios';
 const $ = require( 'jquery');
 
 const _testTags: ITag[] = [
@@ -161,6 +162,7 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
           </div> */}
           <Label required={true}>{'Please Upload Event Image'}</Label>
           <input type="file"></input>
+          <Label required={true}>{'Please type and pick your interest tag:'}</Label>
           <TagPicker
             onResolveSuggestions={this._onFilterChanged}
             getTextFromItem={this._getTextFromItem}
@@ -198,35 +200,40 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
     let startDateTime: String = startDate ? String(startDate.getFullYear() + '-' + startDate.getMonth() + '-' + startDate.getDay()): '';
     startDateTime = startDateTime +  ' ' + (startTime ? startTime.text : '');
 
-    const eventBody = { 
-      userName: 'xiaoming',
+    const data = {
+      username: 'xiaoming',
       name: eventName,
-      startTime: startDateTime,
+      starttime: startDateTime,
       location: location,
+      description: eventDescription,
       interests: interests,
     };
-
-    $.get({
-      method: 'GET',
-      url: 'https://ftallget.westus2.azurecontainer.io/createevent',
-      headers: {
-          'Content-Type': 'application/json',
-      },
+    
+    $.ajax({
       // query parameters go under "data" as an Object
-      data: {
-        username: 'xiaoming',
-        name: eventName,
-        starttime: startDateTime,
-        location: location,
-        description: eventDescription,
-        interests: interests,
-      }
-  })
-  .then((res: any)=>{
+      type: 'POST',
+      url: 'https://ftubuntu.westus2.azurecontainer.io/createevent',
+      data: JSON.stringify(data),
+      ContentType:"application/json",
+      DataType: "json"
+    }).then((res: any)=>{
     console.log(res);
   }).catch((error: any) => {
     console.log(error);
   })
+    // axios.post('http://ftubuntu.westus2.azurecontainer.io/createevent', 
+    //   {
+    //     username: 'xiaoming',
+    //     name: eventName,
+    //     starttime: startDateTime,
+    //     location: location,
+    //     description: eventDescription,
+    //     interests: interests,
+    //   }).then((res: any) => {
+    //     console.log(res);
+    //   }).catch((error: any) => {
+    //     console.log(error);
+    //   })
 
   };
 
