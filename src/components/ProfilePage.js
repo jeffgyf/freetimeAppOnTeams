@@ -39,12 +39,13 @@ export default class Profile extends React.Component {
             return '#' +  this.random().toString(16).substr(-6);
         }
         this.getUserProfile().then(d=>this.setState({ProfileDict:d}));
+
     }
 
     async getUserProfile(){
 
         try{
-            let UserName = await CookieCheck.UserName;
+            let UserName = await CookieCheck.UserNamePromise;
             //https://freetimehttpstest.westus2.azurecontainer.io/getuserprofile?username=
             let parsedUserProfile=await $.get("http://ftubuntu.westus2.azurecontainer.io?username=" + UserName);
             console.log(parsedUserProfile);
@@ -64,8 +65,13 @@ export default class Profile extends React.Component {
             return dict;
           }
         catch(error){
-            alert(error);
-            return [];
+            alert("Failed to get username");
+            console.log(error);
+            return {
+                UserName:"",
+                interests:[],
+                eventList:[]
+            };
         }
     }
 

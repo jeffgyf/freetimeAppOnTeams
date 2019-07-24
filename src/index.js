@@ -5,7 +5,7 @@ import EventPage from './components/EventPage'
 import ProfilePage from './components/ProfilePage'
 import {initializeIcons} from 'office-ui-fabric-react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import InterestEventPicker from './components/InterestEventPicker'
 class IndexPage extends React.Component{
   constructor(){
     super();
@@ -33,7 +33,7 @@ initializeIcons();
 //<Profile image={user} name={"Mr Mario"} Interest_tag={InterestList} events={eventList} />,
 ReactDOM.render(
     <Router>
-           <Route path="/" exact component={IndexPage} />
+          <Route path="/" exact component={IndexPage} />
           <Route path="/eventPage" component={EventPage} />
           <Route path="/profilePage" component={ProfilePage} />
     </Router>,
