@@ -15,27 +15,33 @@ const rootClass = mergeStyles({
 export interface InterestEventPickerState {
   hideDialog: boolean;
   isPickerDisabled?: boolean;
-  username: string;
-  interestTag: Array<String>;
+  username: string | undefined;
+  interests: String | undefined;
 }
 
 const _testTags: ITag[] = [
-  'black',
-  'blue',
-  'brown',
-  'cyan',
-  'green',
-  'magenta',
-  'mauve',
-  'orange',
-  'pink',
-  'purple',
-  'red',
-  'rose',
-  'violet',
-  'white',
-  'yellow'
+  'basketball',
+  'baseball',
+  'movie',
+  'music',
+  'sports',
+  'pub',
+  'dining',
+  'travel',
+  'surfing',
+  'badminton',
+  'gym',
+  'coding',
+  'hackathon',
+  'sports',
+  'social'
 ].map(item => ({ key: item, name: item }));
+
+/*
+interface IChild {  
+  GetNewUserName:(ParUserName:string)=>void;  
+}  
+*/
 
 export default class InterestEventPicker extends React.Component<{}, InterestEventPickerState> {
   // All pickers extend from BasePicker specifying the item type.
@@ -45,29 +51,28 @@ export default class InterestEventPicker extends React.Component<{}, InterestEve
     super(props);
     this.state = {
       isPickerDisabled: false,
-      hideDialog: true,
+      hideDialog: false,
       username: '',
-      interestTag: [],
+      interests: '',
     };
   }
 
   public render() {
     return (
       <div className={rootClass}>
-      <DefaultButton secondaryText="Sign up" onClick={this._showDialog} text="Sign up" />
       <Dialog
         maxWidth={1000}
         hidden={this.state.hideDialog}
         onDismiss={this._closeDialog}
         dialogContentProps={{
           type: DialogType.largeHeader,
-          title: 'Create your event',
+          title: 'Sign Up',
         }}
         modalProps={{
           isBlocking: false,
           styles: { main: { maxWidth: 450 } }
         }}>
-        <TextField label="UserName" required placeholder="UserName"/>
+        <TextField label="UserName" required placeholder="UserName" onChange={(event, username)=>this.setState({username})}/>
         <Label required={true}>{'Please type and pick your interest tag:'}</Label>
         <TagPicker
           onResolveSuggestions={this._onFilterChanged}
@@ -82,9 +87,10 @@ export default class InterestEventPicker extends React.Component<{}, InterestEve
             onFocus: (ev: React.FocusEvent<HTMLInputElement>) => console.log('onFocus called'),
             'aria-label': 'Tag Picker'
           }}
+          onChange={event=>this._onTagChange(event)}
         />
         <DialogFooter>
-            <PrimaryButton onClick={this._closeDialog} text="Save" />
+            <PrimaryButton onClick={this._closeDialog} text="Submit" />
             <DefaultButton onClick={this._closeDialog} text="Cancel" />
           </DialogFooter>
       </Dialog>
@@ -111,11 +117,23 @@ export default class InterestEventPicker extends React.Component<{}, InterestEve
     return tagList.filter(compareTag => compareTag.key === tag.key).length > 0;
   }
 
-  private _showDialog = (): void => {
-    this.setState({ hideDialog: false });
-  };
-
   private _closeDialog = (): void => {
     this.setState({ hideDialog: true });
   };
+
+  private _onTagChange = (event: any): void => {
+    let interestTags:String = '';
+    event.forEach((tag:ITag)=>{
+      interestTags = interestTags + tag.name + ',';
+    })
+
+    this.setState({interests: interestTags.substring(0, interestTags.length - 1)});
+    console.log(this.state.interests);
+  }
+
+  /*
+  private handleLangChange = (): void => {
+    this.props.GetNewUserName("xiaoming");
+  }
+  */
 }
