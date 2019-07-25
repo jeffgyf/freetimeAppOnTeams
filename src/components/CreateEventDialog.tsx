@@ -84,13 +84,6 @@ const timeOptions: IDropdownOption[] = [];
 export interface CreateEventDialogState {
   hideDialog: boolean;
   firstDayOfWeek?: DayOfWeek;
-  eventName: any,
-  location: any,
-  startDate: Date | null | undefined,
-  startTime: IDropdownOption | undefined,
-  eventDescription: any,
-  interests: any,
-  image: any;
   isPickerDisabled: boolean,
 }
 
@@ -98,18 +91,20 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
   public state: CreateEventDialogState = { 
     hideDialog: true, 
     firstDayOfWeek: DayOfWeek.Sunday,
+    isPickerDisabled: false,
+  }
+
+  public data: any={
     eventName: '',
     location: '',
     startDate: null,
     startTime: undefined,
     eventDescription: '',
     interests: '',
-    image: null,
-    isPickerDisabled: false,
-  }
+    image: null,};
 
   public render() {
-    const { firstDayOfWeek, eventName, location, startDate, startTime, eventDescription, interests } = this.state;
+    const { firstDayOfWeek } = this.state;
 
     return (
       <div className="CreateEventDialogButton">
@@ -127,8 +122,8 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
             styles: { main: { maxWidth: 450 } }
           }}
         >
-          <TextField label="Event Title" required placeholder="Please enter event name here" onChange={(event, eventName)=>this.setState({eventName})} />
-          <TextField label="Location" required placeholder="Enter Location here" onChange={(event, location)=>this.setState({location})}/>
+          <TextField label="Event Title" required placeholder="Please enter event name here" onChange={(event, eventName)=>this.data.eventName=eventName} />
+          <TextField label="Location" required placeholder="Enter Location here" onChange={(event, location)=>this.data.location=location}/>
           <div className="startTime">
             <DatePicker
               label="Start Date"
@@ -141,7 +136,7 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
             />
           
             <Dropdown required={true} placeholder="Select Start Time" label="Start Time" 
-              options={timeOptions} styles={dropdownStyles} onChange={(event, startTime)=> this.setState({startTime})}/>
+              options={timeOptions} styles={dropdownStyles} onChange={(event, startTime)=> this.data.startTime=startTime}/>
           </div>
 
           {/* <div className="startTime">
@@ -176,7 +171,7 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
             }}
             onChange={event=>this._onTagChange(event)}
           />
-          <TextField label="Event description" multiline autoAdjustHeight onChange={(event, eventDescription)=> this.setState({eventDescription})} />
+          <TextField label="Event description" multiline autoAdjustHeight onChange={(event, eventDescription)=> this.data.eventDescription=eventDescription} />
           <DialogFooter>
             <PrimaryButton onClick={e=>this._closeDialogAndSubmit(e)} text="Save" />
             <DefaultButton onClick={this._closeDialog} text="Cancel" />
@@ -187,7 +182,7 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
   }
 
   private _onSelectDate = (date: Date | null | undefined): void => {
-    this.setState({ startDate: date });
+    this.data.startDate=date;
   };
 
   private _showDialog = (): void => {
@@ -197,7 +192,7 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
   private _closeDialogAndSubmit = (e: any): void => {
     this.setState({ hideDialog: true });
     e.preventDefault();
-    const { eventName, location, startDate, startTime, eventDescription, image, interests } = this.state;
+    const { eventName, location, startDate, startTime, eventDescription, image, interests } = this.data;
     
     let startDateTime: any = startDate ? String(startDate.getFullYear() + '-' + startDate.getMonth() + '-' + startDate.getDay()): '';
     startDateTime = startDateTime +  ' ' + (startTime ? startTime.text : '');
@@ -290,12 +285,12 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
       interestTags = interestTags + tag.name + ',';
     })
 
-    this.setState({interests: interestTags.substring(0, interestTags.length - 1)});
+    this.data.interests = interestTags.substring(0, interestTags.length - 1);
   }
 
   private _fileChangedHandler = (file: any): void => {
     console.log(file.target.files[0]);
-    this.setState({ image: file.target.files[0] });
-    console.log(this.state.image);
+    this.data.image=file.target.files[0];
+    console.log(this.data.image);
   };
 }
