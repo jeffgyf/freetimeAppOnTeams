@@ -42,7 +42,6 @@ const _testTags: ITag[] = [
   'baseball',
   'movie',
   'music',
-  'sports',
   'pub',
   'dining',
   'travel',
