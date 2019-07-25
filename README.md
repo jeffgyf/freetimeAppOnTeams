@@ -1,7 +1,17 @@
+# Freetime
+#### A Teams app bringing people together to share your passion!
+--------------------
+
+## Introduction
+This is a project For [Microsoft Hackathon 2019](https://garagehackbox.azurewebsites.net/hackathons/1857/projects/79302).
+
+#### Prerequisite
+
+```
 npm install
 
 npm start
-
+```
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
