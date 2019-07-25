@@ -23,7 +23,10 @@ class IndexPage extends React.Component{
         document.cookie="hello"+(new Date()).getTime();
         this.setState({cookie: document.cookie});
       }}>{"test cookie"}</button>
-      <button onClick={()=>document.cookie = "username=<logged_out>"}>{"log out"}</button>
+      <button onClick={()=>{
+        document.cookie = "username=<logged_out>";
+        this.setState({cookie:document.cookie});
+      }}>{"log out"}</button>
     </div>);
   }
 }
