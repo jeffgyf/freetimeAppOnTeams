@@ -12,9 +12,9 @@
 }
 
 .profile_inner{
+    background-image: url('../Back.png');
     position: relative;
     top: 10px;
-    background-color: white;
     display: flex;
     height: 50%;
     margin-right: 5%;

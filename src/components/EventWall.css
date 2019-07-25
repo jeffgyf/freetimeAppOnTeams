@@ -1,6 +1,6 @@
 
 .EventWall .EventEntry{
-  border: 6px solid white;
+  border: 10px solid #f3f2f1;
 }
 
 .EventWall{
@@ -8,6 +8,7 @@
   left: 50%;
   position: absolute;
   transform: translate(-50%, 0%);
+  background-color: #f3f2f1;
 }
 
 .EventWall .SimpleBar{
