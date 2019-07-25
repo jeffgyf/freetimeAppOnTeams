@@ -84,12 +84,13 @@ const timeOptions: IDropdownOption[] = [];
 export interface CreateEventDialogState {
   hideDialog: boolean;
   firstDayOfWeek?: DayOfWeek;
-  eventName: String | undefined,
-  location: String | undefined,
+  eventName: any,
+  location: any,
   startDate: Date | null | undefined,
   startTime: IDropdownOption | undefined,
-  eventDescription: String | undefined,
-  interests: String | undefined,
+  eventDescription: any,
+  interests: any,
+  image: any;
   isPickerDisabled: boolean,
 }
 
@@ -103,11 +104,12 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
     startTime: undefined,
     eventDescription: '',
     interests: '',
+    image: null,
     isPickerDisabled: false,
   }
 
   public render() {
-    const { firstDayOfWeek, eventName, location } = this.state;
+    const { firstDayOfWeek, eventName, location, startDate, startTime, eventDescription, interests } = this.state;
 
     return (
       <div className="CreateEventDialogButton">
@@ -135,7 +137,7 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
               strings={DayPickerStrings}
               placeholder="Select a date..."
               ariaLabel="Select a date"
-              onSelectDate={(startDate)=>this.setState({startDate})}
+              onSelectDate={this._onSelectDate}
             />
           
             <Dropdown required={true} placeholder="Select Start Time" label="Start Time" 
@@ -157,7 +159,7 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
               onChange={(event, endTime)=> this.setState({endTime})}/>
           </div> */}
           <Label required={true}>{'Please Upload Event Image'}</Label>
-          <input type="file"></input>
+          <input type="file" onChange={this._fileChangedHandler}></input>
           <Label required={true}>{'Please type and pick your interest tag:'}</Label>
           <TagPicker
             onResolveSuggestions={this._onFilterChanged}
@@ -184,6 +186,10 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
     );
   }
 
+  private _onSelectDate = (date: Date | null | undefined): void => {
+    this.setState({ startDate: date });
+  };
+
   private _showDialog = (): void => {
     this.setState({ hideDialog: false });
   };
@@ -191,28 +197,42 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
   private _closeDialogAndSubmit = (e: any): void => {
     this.setState({ hideDialog: true });
     e.preventDefault();
-    const { eventName, location, startDate, startTime, eventDescription, interests } = this.state;
+    const { eventName, location, startDate, startTime, eventDescription, image, interests } = this.state;
     
-    let startDateTime: String = startDate ? String(startDate.getFullYear() + '-' + startDate.getMonth() + '-' + startDate.getDay()): '';
+    let startDateTime: any = startDate ? String(startDate.getFullYear() + '-' + startDate.getMonth() + '-' + startDate.getDay()): '';
     startDateTime = startDateTime +  ' ' + (startTime ? startTime.text : '');
 
-    CookieCheck.UserNamePromise.then(username=>{
+    console.log(image);
+
+    CookieCheck.UserNamePromise.then((username:any)=>{
+      let formData = new FormData();
+      formData.append('eventimage', image);
+      formData.append('starttime', startDateTime);
+      formData.append('username', username);
+      formData.append('name', eventName);
+      formData.append('location', location);
+      formData.append('description', eventDescription);
+      formData.append('interests', interests);
+      //formData.append('image', image);
       const data = {
         username: username,
         name: eventName,
         starttime: startDateTime,
         location: location,
         description: eventDescription,
+        eventimage: image,
         interests: interests,
-      };
+      }
       
       $.ajax({
         // query parameters go under "data" as an Object
         type: 'POST',
         url: 'https://ftubuntu.westus2.azurecontainer.io/createevent',
-        data: JSON.stringify(data),
-        ContentType:"application/json",
-        DataType: "json"
+        data: formData,
+        ContentType: false,
+        processData: false,
+        cache: false,
+        enctype: 'multipart/form-data',
         }).then((res: any)=>{
         console.log(res);
       }).catch((error: any) => {
@@ -273,4 +293,10 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
 
     this.setState({interests: interestTags.substring(0, interestTags.length - 1)});
   }
+
+  private _fileChangedHandler = (file: any): void => {
+    console.log(file.target.files[0]);
+    this.setState({ image: file.target.files[0] });
+    console.log(this.state.image);
+  };
 }
