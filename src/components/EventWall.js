@@ -12,7 +12,7 @@ export default class EventWall extends React.Component{
     return (
      
         <div className="EventWall"> 
-        <SimpleBar className="SimpleBar" style={{ width: colNum*EventCard.Width+60+'px' }}>
+        <SimpleBar className="SimpleBar" style={{ width: colNum*EventCard.Width+72+'px' }}>
           <table>
             {eventRows.map(i=><tr> {i.map(k=>
               <td className="EventEntry">
