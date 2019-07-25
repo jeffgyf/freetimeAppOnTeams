@@ -197,6 +197,8 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
   }
 
   private _onSelectDate = (date: Date | null | undefined): void => {
+    console.log("date is ")
+    console.log(date);
     this.data.startDate=date;
   };
 
@@ -209,7 +211,7 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
     e.preventDefault();
     const { eventName, location, startDate, startTime, eventDescription, image, interests } = this.data;
     
-    let startDateTime: any = startDate ? String(startDate.getFullYear() + '-' + startDate.getMonth() + '-' + startDate.getDay()): '';
+    let startDateTime: any = startDate ? String(startDate.getFullYear() + '-' + (startDate.getMonth()+1) + '-' + startDate.getDate()): '';
     startDateTime = startDateTime +  ' ' + (startTime ? startTime.text : '');
 
     console.log(image);
