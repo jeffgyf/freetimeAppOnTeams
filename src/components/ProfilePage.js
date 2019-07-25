@@ -5,6 +5,7 @@ import './ProfilePage.css';
 import soccer from '../soccer.png';
 import user_image from '../user2.jpg';
 import CookieCheck from './CookieCheck'
+import config from '../config';
 var $ = require("jquery");
 
 //import { element } from 'prop-types';
@@ -47,9 +48,9 @@ export default class Profile extends React.Component {
         try{
             let UserName = await CookieCheck.UserNamePromise;
             //https://freetimehttpstest.westus2.azurecontainer.io/getuserprofile?username=
-            let parsedUserProfile=await $.get("https://freetimehttpstest.westus2.azurecontainer.io/getuserprofile?username=" + UserName);
+            let parsedUserProfile=await $.get(config.BackEndAPIUrl+"/getuserprofile?username=" + UserName);
             console.log(parsedUserProfile);
-            let eventList=parsedUserProfile.Events.map(ff=>({
+            let eventList=parsedUserProfile.Events==null?[]:parsedUserProfile.Events.map(ff=>({
               title: ff.Name,
               eventInfo:{
                 location: ff.Location, 
@@ -65,7 +66,7 @@ export default class Profile extends React.Component {
             return dict;
           }
         catch(error){
-            alert("Failed to get username");
+            alert("Failed to get user profile");
             console.log(error);
             return {
                 UserName:"",

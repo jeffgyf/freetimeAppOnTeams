@@ -88,7 +88,7 @@ export default class EventPage extends React.Component {
         let parsedEvents=await $.get(config.BackEndAPIUrl+"/getjoinedevents?username="+userName);
         console.log("parsedEvent");
         console.log(parsedEvents);
-        let eventList=parsedEvents.map(ff=>({
+        let eventList=parsedEvents==null?[]:parsedEvents.map(ff=>({
           title: ff.Name,
           eventInfo:{
             location: ff.Location, 
