@@ -229,11 +229,10 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
         type: 'POST',
         url: 'https://ftubuntu.westus2.azurecontainer.io/createevent',
         data: formData,
-        ContentType: false,
+        contentType: false,
         processData: false,
-        cache: false,
-        enctype: 'multipart/form-data',
-        }).then((res: any)=>{
+        mimetype: 'multipart/form-data',
+      }).then((res: any)=>{
         console.log(res);
       }).catch((error: any) => {
         console.log(error);
