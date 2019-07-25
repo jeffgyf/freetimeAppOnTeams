@@ -19,7 +19,7 @@ export default class EventCard extends React.PureComponent {
   render() {
     const previewProps= {
       previewImages: [{
-          previewImageSrc: this.props.img,
+          previewImageSrc: `https://ftubuntu.westus2.azurecontainer.io/eventimages/${this.props.eventId}.jpg`,
           imageFit: ImageFit.cover,
           width: EventCard.Width,
           height: 120
