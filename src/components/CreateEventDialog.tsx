@@ -11,6 +11,22 @@ import CookieCheck from './CookieCheck';
 const $ = require( 'jquery');
 
 const _testTags: ITag[] = [
+  'hiking',
+  'game',
+  'video game',
+  'boardgame',
+  'anime',
+  'diving',
+  'camping',
+  'adventure',
+  'photography',
+  'dance',
+  'tech',
+  'bbq',
+  'film',
+  'art',
+  'charity',
+  'Sci-Fi',
   'basketball',
   'baseball',
   'movie',
@@ -160,7 +176,7 @@ export default class CreateEventDialog extends React.Component<{}, CreateEventDi
           </div> */}
           <Label required={true}>{'Please Upload Event Image'}</Label>
           <input type="file" onChange={this._fileChangedHandler}></input>
-          <Label required={true}>{'Please type and pick your interest tag:'}</Label>
+          <Label required={true}>{'Please type and pick your event tag:'}</Label>
           <TagPicker
             onResolveSuggestions={this._onFilterChanged}
             getTextFromItem={this._getTextFromItem}

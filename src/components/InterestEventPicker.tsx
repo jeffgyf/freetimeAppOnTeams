@@ -22,6 +22,22 @@ export interface InterestEventPickerState {
 }
 
 const _testTags: ITag[] = [
+  'hiking',
+  'game',
+  'video game',
+  'boardgame',
+  'anime',
+  'diving',
+  'camping',
+  'adventure',
+  'photography',
+  'dance',
+  'tech',
+  'bbq',
+  'film',
+  'art',
+  'charity',
+  'Sci-Fi',
   'basketball',
   'baseball',
   'movie',
