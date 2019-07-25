@@ -31,6 +31,7 @@ export default class Profile extends React.Component {
         }
         this.state={
             ProfileDict:{
+                UserImage:"",
                 UserName:"",
                 interests:[],
                 eventList:[]
@@ -59,16 +60,19 @@ export default class Profile extends React.Component {
               img: soccer
             }));
             var dict = {
+                UserImage:"https://ftubuntu.westus2.azurecontainer.io/profileimages/" + parsedUserProfile.UserID + ".jpg",
                 UserName:UserName,
                 eventList:eventList,
                 interests:parsedUserProfile.Interests
             }
+    
             return dict;
           }
         catch(error){
             alert("Failed to get user profile");
             console.log(error);
             return {
+                UserImage:"",
                 UserName:"",
                 interests:[],
                 eventList:[]
@@ -89,7 +93,7 @@ export default class Profile extends React.Component {
             <body className="profile_main">
                 <CookieCheck/>
                 <div className="profile_inner">
-                    <img className="user_image" src={user_image}/>
+                    <img className="user_image" src={this.state.ProfileDict.UserImage}/>
                     <div className="user_info">
                         <h1 className="user_name">{this.state.ProfileDict.UserName}</h1>
                         <h2 className="interest_tag_name">Interest Tag:</h2>
