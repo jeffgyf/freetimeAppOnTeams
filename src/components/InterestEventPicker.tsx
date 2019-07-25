@@ -16,8 +16,9 @@ const rootClass = mergeStyles({
 export interface InterestEventPickerState {
   hideDialog: boolean;
   isPickerDisabled?: boolean;
-  username: string | undefined;
-  interests: String | undefined;
+  username: any;
+  interests: any;
+  image: any;
 }
 
 const _testTags: ITag[] = [
@@ -55,6 +56,7 @@ export default class InterestEventPicker extends React.Component<{GetNewUserName
       hideDialog: false,
       username: '',
       interests: '',
+      image: null,
     };
   }
 
@@ -76,6 +78,9 @@ export default class InterestEventPicker extends React.Component<{GetNewUserName
         <TextField label="UserName" required placeholder="UserName" onChange={(event, username)=>{
           this.setState({username})
           }}/>
+
+        <Label required={true}>{'Please Upload your photo'}</Label>
+        <input type="file" onChange={this._fileChangedHandler}></input>
         <Label required={true}>{'Please type and pick your interest tag:'}</Label>
         <TagPicker
           onResolveSuggestions={this._onFilterChanged}
@@ -105,7 +110,12 @@ export default class InterestEventPicker extends React.Component<{GetNewUserName
   private _closeDialogAndSubmit = (e: any): void => {
     this.setState({ hideDialog: true });
     e.preventDefault();
-    const { username, interests } = this.state;
+    const { username, interests, image } = this.state;
+
+    let formData = new FormData();
+    formData.append('profileimage', image);
+    formData.append('username', username);
+    formData.append('interests', interests);
 
     const data = {
         username: username,
@@ -116,9 +126,10 @@ export default class InterestEventPicker extends React.Component<{GetNewUserName
       // query parameters go under "data" as an Object
       type: 'POST',
       url: 'https://ftubuntu.westus2.azurecontainer.io/signup',
-      data: JSON.stringify(data),
-      ContentType:"application/json",
-      DataType: "json"
+      data: formData,
+      contentType: false,
+      processData: false,
+      mimetype: 'multipart/form-data',
     })
     .then((res: any)=>{
       console.log(res);
@@ -160,6 +171,7 @@ export default class InterestEventPicker extends React.Component<{GetNewUserName
   }
 
   private _closeDialog = (): void => {
+    this.props.GetNewUserName(this.state.username);
     this.setState({ hideDialog: true });
   };
 
@@ -172,6 +184,12 @@ export default class InterestEventPicker extends React.Component<{GetNewUserName
     this.setState({interests: interestTags.substring(0, interestTags.length - 1)});
     console.log(this.state.interests);
   }
+
+  private _fileChangedHandler = (file: any): void => {
+    console.log(file.target.files[0]);
+    this.setState({ image: file.target.files[0] });
+    console.log(this.state.image);
+  };
 
   /*
   private handleLangChange = (): void => {
