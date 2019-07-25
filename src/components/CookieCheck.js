@@ -33,6 +33,9 @@ function ParseCookie(){
         //10 is length of "username=<"
         x = x.substring(pos+10);
         x = x.substring(0,x.indexOf(">"));
+        if(x=="logged_out"){
+            return null;
+        }
         return x;
     } 
 }
